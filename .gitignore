@@ -1,0 +1,3 @@
+build/
+sqlmap_env/
+sqlmap_gui.egg-info/
