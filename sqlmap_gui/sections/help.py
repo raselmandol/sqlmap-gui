@@ -1,6 +1,6 @@
 """
 Sample page template to add in the main page
-change the namme, add widgets whatever you need, collect input and then send them back to logic
+change the name, add widgets whatever you need, collect input and then send them back to logic
 
 
 """
