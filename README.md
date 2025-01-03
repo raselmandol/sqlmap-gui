@@ -149,3 +149,14 @@ Contributions are welcome! To contribute:
 
 This project is licensed under the MIT License, [sqlmap license](https://raw.githubusercontent.com/sqlmapproject/sqlmap/refs/heads/master/LICENSE).
 ---
+
+## To-Do
+
+- [ ]  Add more screenshots of the GUI in action.
+- [ ]  Enhance error handling.
+- [ ]  Improve documentation with more examples.
+- [ ]  More tabs
+- [ ]  Background Process
+- [ ]  JSON import, export
+- [ ]  History Tab
+
