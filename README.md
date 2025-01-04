@@ -7,8 +7,6 @@
 
 ---
 
-[![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](#)
-
 [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](#)
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](#)
