@@ -159,4 +159,7 @@ This project is licensed under the MIT License, [sqlmap license](https://raw.git
 - [ ]  Background Process
 - [ ]  JSON import, export
 - [ ]  History Tab
+- [ ]  Optimization tab
+- [ ]  WebScarab proxy
+- [ ]  Burp proxy
 
