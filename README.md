@@ -157,4 +157,5 @@ This project is licensed under the MIT License, [sqlmap license](https://raw.git
 - [ ]  Optimization tab
 - [ ]  WebScarab proxy
 - [ ]  Burp proxy
+- [ ]  sqlmap web
 
