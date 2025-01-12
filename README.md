@@ -15,7 +15,7 @@
 - **User-Friendly Interface**: Simplified navigation for sqlmap functionalities.
 - **Comprehensive Options**: Access to all popular sqlmap commands with categorized tabs.
 - **Results Display**: Real-time output display for executed sqlmap commands.
-- **Cross-Platform**: Runs on Windows and Linux.
+- **Cross-Platform**: Runs on Windows and ~~Linux~~ (working).
 - **Customizable**: Easily add new features or extend the interface.
 
 ---
