@@ -43,8 +43,7 @@ cd sqlmap-gui
 
 ```bash
 python -m venv sqlmap_env
-source sqlmap_env/bin/activate   # On Linux/Mac
-sqlmap_env\Scripts\activate    # On Windows
+sqlmap_env\Scripts\activate    # Windows
 ```
 
 ### Install Dependencies
