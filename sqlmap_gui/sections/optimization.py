@@ -1,0 +1,67 @@
+from PyQt5.QtWidgets import QWidget, QVBoxLayout,QHBoxLayout,QPushButton, QLabel, QComboBox, QCheckBox, QLineEdit
+
+class OptimizationTab(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        # self.setStyleSheet("""
+        #     QWidget {
+        #         background-image: url('../assets/bg_test1.jpg');
+        #         background-repeat: no-repeat;
+        #         background-position: center;
+        #         background-size: cover;
+        #     }
+        # """)        
+        self.setStyleSheet("background-image: url(bg_test1.jpg);")
+        self.layout = QVBoxLayout()
+
+        self.upper_layout = QHBoxLayout()
+
+        self.turn_on_all = QCheckBox("enable all")
+        self.upper_layout.addWidget(self.turn_on_all)
+
+        self.predict_output = QCheckBox("--predict-output")
+        self.upper_layout.addWidget(self.predict_output)
+
+        self.keep_alive = QCheckBox("--keep-alive")
+        self.upper_layout.addWidget(self.keep_alive)
+
+        self.null_connection = QCheckBox("--null-connection")
+        self.upper_layout.addWidget(self.null_connection)
+
+
+
+        self.layout.addLayout(self.upper_layout)
+        #self.setLayout(self.layout)
+        #self.layout = QVBoxLayout()
+
+        # Add more here 
+        # Set the main layout (self.layout) for the current widget (InjectTab)
+        self.setLayout(self.layout)
+
+    def collectInputs(self):
+        
+        #print("collectInputs called for InjectTab")
+        inputs = []
+
+        if self.turn_on_all.isChecked():
+            inputs.append("-o")
+
+        if self.predict_output.isChecked():
+            inputs.append("--predict-output")
+
+        if self.keep_alive.isChecked():
+            inputs.append("--keep-alive")
+
+        if self.null_connection.isChecked():
+            inputs.append("--null-connection")
+
+        return inputs
+
+    def clearInputs(self):
+        self.turn_on_all.setChecked(False)
+        self.predict_output.setChecked(False)
+        self.keep_alive.setChecked(False)
+        self.null_connection.setChecked(False)
