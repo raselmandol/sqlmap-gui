@@ -3,3 +3,4 @@ sqlmap_env/
 sqlmap_gui.egg-info/
 __pycache__/
 sqlmap_gui/__pycache__/
+sqlmap_gui/sections/__pycache__/
