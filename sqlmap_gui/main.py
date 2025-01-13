@@ -8,6 +8,7 @@ from sqlmap_gui.sections.inject import InjectTab
 from sqlmap_gui.sections.request import RequestTab
 from sqlmap_gui.sections.enumerate import EnumerateTab
 from sqlmap_gui.sections.file import FileTab
+from sqlmap_gui.sections.optimization import OptimizationTab
 from sqlmap_gui.sections.other import OtherTab
 from sqlmap_gui.sections.detection import DetectionTab
 from sqlmap_gui.sections.help import HelpTab
@@ -43,11 +44,13 @@ class SqlmapGUI(QMainWindow):
         # Tabs for different sections
         self.tabs = QTabWidget()
         self.inject_tab = InjectTab()
+        self.detection_tab = DetectionTab()
         self.request_tab = RequestTab()
         self.enumerate_tab = EnumerateTab()
         self.file_tab = FileTab()
+        self.optimization_tab = OptimizationTab()        
         self.other_tab = OtherTab()
-        self.detection_tab = DetectionTab()
+
         self.help_tab = HelpTab()
 
         self.tabs.addTab(self.inject_tab, "Inject(Q)")
@@ -55,6 +58,7 @@ class SqlmapGUI(QMainWindow):
         self.tabs.addTab(self.request_tab, "Request(W)")
         self.tabs.addTab(self.enumerate_tab, "Enumerate(E)")
         self.tabs.addTab(self.file_tab, "File(R)")
+        self.tabs.addTab(self.optimization_tab, "Optimization(OO)")
         self.tabs.addTab(self.other_tab, "Other(O)")
         self.tabs.addTab(self.help_tab,"Help/General")
 
@@ -120,6 +124,7 @@ class SqlmapGUI(QMainWindow):
         inputs.extend(self.request_tab.collectInputs())
         inputs.extend(self.enumerate_tab.collectInputs())
         inputs.extend(self.file_tab.collectInputs())
+        inputs.extend(self.optimization_tab.collectInputs())
         inputs.extend(self.other_tab.collectInputs())
         inputs.extend(self.help_tab.collectInputs())
 
@@ -162,6 +167,7 @@ class SqlmapGUI(QMainWindow):
         self.request_tab.clearInputs()
         self.enumerate_tab.clearInputs()
         self.file_tab.clearInputs()
+        self.optimization_tab.clearInputs()
         self.other_tab.clearInputs()
         self.help_tab.clearInputs()
         #self.console_output.clear()
