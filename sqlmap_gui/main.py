@@ -51,11 +51,11 @@ class SqlmapGUI(QMainWindow):
         self.help_tab = HelpTab()
 
         self.tabs.addTab(self.inject_tab, "Inject(Q)")
+        self.tabs.addTab(self.detection_tab,"Detection(DD)")
         self.tabs.addTab(self.request_tab, "Request(W)")
         self.tabs.addTab(self.enumerate_tab, "Enumerate(E)")
         self.tabs.addTab(self.file_tab, "File(R)")
         self.tabs.addTab(self.other_tab, "Other(O)")
-        self.tabs.addTab(self.detection_tab,"Detection(DD)")
         self.tabs.addTab(self.help_tab,"Help/General")
 
         layout.addLayout(options_layout)
@@ -116,11 +116,11 @@ class SqlmapGUI(QMainWindow):
 
         # Collect inputs from all tabs
         inputs.extend(self.inject_tab.collectInputs())
+        inputs.extend(self.detection_tab.collectInputs())
         inputs.extend(self.request_tab.collectInputs())
         inputs.extend(self.enumerate_tab.collectInputs())
         inputs.extend(self.file_tab.collectInputs())
         inputs.extend(self.other_tab.collectInputs())
-        inputs.extend(self.detection_tab.collectInputs())
         inputs.extend(self.help_tab.collectInputs())
 
         self.collected_inputs = " ".join(inputs)
