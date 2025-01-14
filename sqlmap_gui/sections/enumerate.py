@@ -18,6 +18,16 @@ class EnumerateTab(QWidget):
         self.enumerate_dbs = QCheckBox("Enumerate Databases")
         self.layout.addWidget(self.enumerate_dbs)
 
+        self.enumerate_all = QCheckBox("--a Retrieve all")
+        self.layout.addWidget(self.enumerate_all)
+
+        self.dbms_banner = QCheckBox("--banner DBMS Banner")
+        self.layout.addWidget(self.dbms_banner)
+
+        self.current_user = QCheckBox("--current-user")
+        self.layout.addWidget(self.current_user)
+
+
         self.custom_query = QLineEdit(self)
         self.custom_query.setPlaceholderText("Custom Query")
         self.layout.addWidget(QLabel("Custom Query"))
@@ -36,6 +46,15 @@ class EnumerateTab(QWidget):
 
         if self.enumerate_dbs.isChecked():
             inputs.append("--dbs")
+        
+        if self.enumerate_all.isChecked():
+            inputs.append("--a")
+
+        if self.dbms_banner.isChecked():
+            inputs.append("--banner")
+
+        if self.current_user.isChecked():
+            inputs.append("--current-user")
 
         if self.custom_query.text():
             inputs.append(f"--sql-query {self.custom_query.text()}")
@@ -46,4 +65,7 @@ class EnumerateTab(QWidget):
         self.enumerate_users.setChecked(False)
         self.enumerate_passwords.setChecked(False)
         self.enumerate_dbs.setChecked(False)
+        self.enumerate_all.setChecked(False)
+        self.dbms_banner.setChecked(False)
+        self.current_user.setChecked(False)
         self.custom_query.clear()
