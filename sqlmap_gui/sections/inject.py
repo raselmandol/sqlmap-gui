@@ -31,6 +31,12 @@ class InjectTab(QWidget):
         self.skip_static = QCheckBox("--skip-static")
         self.upper_layout.addWidget(self.skip_static)
 
+        self.invalid_bignum = QCheckBox("--invalid-bignum")
+        self.upper_layout.addWidget(self.invalid_bignum)
+
+        self.invalid_logical = QCheckBox("--invalid-logical")
+        self.upper_layout.addWidget(self.invalid_logical)
+
 
         self.layout.addLayout(self.upper_layout)
         #self.setLayout(self.layout)
@@ -64,6 +70,12 @@ class InjectTab(QWidget):
 
         if self.skip_static.isChecked():
             inputs.append("--skip-static")
+
+        if self.invalid_bignum.isChecked():
+            inputs.append("--invalid-bignum")
+
+        if self.invalid_logical.isChecked():
+            inputs.append("--invalid-logical")
 
         prefix_value = self.prefix.text()
         if prefix_value:
