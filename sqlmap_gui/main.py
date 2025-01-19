@@ -194,7 +194,7 @@ class SqlmapGUI(QMainWindow):
         QMessageBox.information(self, "About Me", "About me section - will update later.")
 
     def showHelp(self):
-        QMessageBox.information(self, "Help", "This is the help section for the SQLMap GUI application.")
+        QMessageBox.information(self, "Help", "working........ will update soon :) ")
 
 def main():
     app = QApplication(sys.argv)
