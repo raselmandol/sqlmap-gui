@@ -20,6 +20,18 @@ class RequestTab(QWidget):
         self.ssl_tls = QCheckBox("Use SSL/TLS")
         self.layout.addWidget(self.ssl_tls)
 
+        self.drop_set_cookie = QCheckBox("--drop-set-cookie")
+        self.layout.addWidget(self.drop_set_cookie)
+
+        self.mobile = QCheckBox("--mobile")
+        self.layout.addWidget(self.mobile)
+        
+        self.random_agent = QCheckBox("--random-agent")
+        self.layout.addWidget(self.random_agent)
+
+        self.ignore_proxy = QCheckBox("--ignore-proxy")
+        self.layout.addWidget(self.ignore_proxy)
+
         # Add a line edit for custom headers
         self.custom_headers = QLineEdit(self)
         self.custom_headers.setPlaceholderText("Custom Headers (key:value)")
