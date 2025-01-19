@@ -25,17 +25,21 @@ class InjectTab(QWidget):
         self.upper_layout.addWidget(QLabel("--param-filter"))
         self.upper_layout.addWidget(self.param_filter)
 
-        self.general_attack = QCheckBox("General filter")
-        self.upper_layout.addWidget(self.general_attack)
 
-        self.skip_static = QCheckBox("--skip-static")
-        self.upper_layout.addWidget(self.skip_static)
+        self.prefix = QLineEdit(self)
+        self.prefix.setPlaceholderText("payload prefix str")
+        self.upper_layout.addWidget(QLabel("--prefix"))
+        self.upper_layout.addWidget(self.prefix)
 
-        self.invalid_bignum = QCheckBox("--invalid-bignum")
-        self.upper_layout.addWidget(self.invalid_bignum)
+        self.suffix = QLineEdit(self)
+        self.suffix.setPlaceholderText("suffix")
+        self.upper_layout.addWidget(QLabel("--suffix"))
+        self.upper_layout.addWidget(self.suffix)
 
-        self.invalid_logical = QCheckBox("--invalid-logical")
-        self.upper_layout.addWidget(self.invalid_logical)
+
+
+
+
 
 
         self.layout.addLayout(self.upper_layout)
@@ -43,15 +47,21 @@ class InjectTab(QWidget):
         #self.layout = QVBoxLayout()
 
         # Add prefix and suffix QLineEdit widgets vertically below the horizontal layout
-        self.prefix = QLineEdit(self)
-        self.prefix.setPlaceholderText("payload prefix str")
-        self.layout.addWidget(QLabel("--prefix"))
-        self.layout.addWidget(self.prefix)
 
-        self.suffix = QLineEdit(self)
-        self.suffix.setPlaceholderText("suffix")
-        self.layout.addWidget(QLabel("--suffix"))
-        self.layout.addWidget(self.suffix)
+        self.general_attack = QCheckBox("General filter")
+        self.layout.addWidget(self.general_attack)
+
+        self.skip_static = QCheckBox("--skip-static")
+        self.layout.addWidget(self.skip_static)
+
+        self.invalid_bignum = QCheckBox("--invalid-bignum")
+        self.layout.addWidget(self.invalid_bignum)
+
+        self.invalid_logical = QCheckBox("--invalid-logical")
+        self.layout.addWidget(self.invalid_logical)
+
+
+
         # Add more here 
         # Set the main layout (self.layout) for the current widget (InjectTab)
         self.setLayout(self.layout)
