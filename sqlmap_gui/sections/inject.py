@@ -46,8 +46,6 @@ class InjectTab(QWidget):
         #self.setLayout(self.layout)
         #self.layout = QVBoxLayout()
 
-        # Add prefix and suffix QLineEdit widgets vertically below the horizontal layout
-
         self.general_attack = QCheckBox("General filter")
         self.layout.addWidget(self.general_attack)
 
