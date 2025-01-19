@@ -61,6 +61,18 @@ class RequestTab(QWidget):
         if self.ssl_tls.isChecked():
             inputs.append("--force-ssl")
 
+        if self.drop_set_cookie.isChecked():
+            inputs.append("--drop-set-cookie")
+
+        if self.mobile.isChecked():
+            inputs.append("--mobile")
+
+        if self.random_agent.isChecked():
+            inputs.append("--random-agent")
+
+        if self.ignore_proxy.isChecked():
+            inputs.append("--ignore-proxy")
+
         if self.custom_headers.text():
             inputs.append(f"--headers {self.custom_headers.text()}")
 
@@ -75,6 +87,10 @@ class RequestTab(QWidget):
     def clearInputs(self):
         self.http_method.setCurrentIndex(0)
         self.ssl_tls.setChecked(False)
+        self.drop_set_cookie.setChecked(False)
+        self.mobile.setChecked(False)
+        self.random_agent.setChecked(False)
+        self.ignore_proxy.setChecked(False)
         self.custom_headers.clear()
         for i in range(self.layout.count()):
             widget = self.layout.itemAt(i).widget()
