@@ -110,12 +110,16 @@ Here is a sample workflow for detecting vulnerabilities on a target website:
 To get a list of basic options and switches use:
 
 ```bash
--h # Use manual/extra commands option or go to help tab
+-h
 ```
 To get a list of all options and switches use:
 ```bash
--hh  # You can find this in help tab
+-hh
 ```
+
+To get an overview of sqlmap capabilities, a list of supported features, and a description of all options and switches, along with examples, you are advised to consult the [user's manual](https://github.com/sqlmapproject/sqlmap/wiki/Usage). Use extra/optional command input option to use those extra options and switches. You can find Custom Query option in Enumerate tab.
+
+---
 
 ## Requirements
 
