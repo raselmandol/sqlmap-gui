@@ -105,6 +105,18 @@ Here is a sample workflow for detecting vulnerabilities on a target website:
 
 ---
 
+## More
+
+To get a list of basic options and switches use:
+
+```bash
+-h # Use manual/extra commands option or go to help tab
+```
+To get a list of all options and switches use:
+```bash
+-hh  # You can find this in help tab
+```
+
 ## Requirements
 
 - Python 3.8+
