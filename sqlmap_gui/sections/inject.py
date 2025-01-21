@@ -14,7 +14,7 @@ class InjectTab(QWidget):
         #         background-size: cover;
         #     }
         # """)        
-        self.setStyleSheet("background-image: url(bg_test1.jpg);")
+        # self.setStyleSheet("background-image: url(bg_test1.jpg);")
         self.layout = QVBoxLayout()
 
         self.upper_layout = QHBoxLayout()
