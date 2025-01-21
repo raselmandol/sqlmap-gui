@@ -30,7 +30,7 @@ class EnumerateTab(QWidget):
 
         self.custom_query = QLineEdit(self)
         self.custom_query.setPlaceholderText("Custom Query")
-        self.layout.addWidget(QLabel("Custom Query"))
+        # self.layout.addWidget(QLabel("Custom Query"))
         self.layout.addWidget(self.custom_query)
 
         self.setLayout(self.layout)
