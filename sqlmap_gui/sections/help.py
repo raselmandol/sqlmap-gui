@@ -1,10 +1,3 @@
-"""
-Sample page template to add in the main page
-change the name, add widgets whatever you need, collect input and then send them back to logic
-
-
-"""
-
 from PyQt5.QtWidgets import QWidget, QApplication, QVBoxLayout, QLabel, QCheckBox, QLineEdit,QHBoxLayout,QComboBox,QFileDialog
 
 class HelpTab(QWidget):
