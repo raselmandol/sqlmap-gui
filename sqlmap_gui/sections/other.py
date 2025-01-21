@@ -13,13 +13,13 @@ class OtherTab(QWidget):
         self.layout.addWidget(self.verbose)
 
         self.threads = QLineEdit(self)
-        self.threads.setPlaceholderText("Threads")
-        self.layout.addWidget(QLabel("--threads"))
+        self.threads.setPlaceholderText("--threads")
+        # self.layout.addWidget(QLabel("--threads"))
         self.layout.addWidget(self.threads)
 
         self.level = QLineEdit(self)
-        self.level.setPlaceholderText("Level")
-        self.layout.addWidget(QLabel("--level"))
+        self.level.setPlaceholderText("--level")
+        # self.layout.addWidget(QLabel("--level"))
         self.layout.addWidget(self.level)
 
         self.setLayout(self.layout)
