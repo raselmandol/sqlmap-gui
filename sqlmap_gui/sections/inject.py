@@ -58,6 +58,15 @@ class InjectTab(QWidget):
         self.invalid_logical = QCheckBox("--invalid-logical")
         self.layout.addWidget(self.invalid_logical)
 
+        self.invalid_string = QCheckBox("--invalid-string")
+        self.layout.addWidget(self.invalid_string)
+
+        self.no_cast = QCheckBox("--no-cast")
+        self.layout.addWidget(self.no_cast)
+
+        self.no_escape = QCheckBox("--no-escape")
+        self.layout.addWidget(self.no_escape)
+
 
 
         # Add more here 
@@ -85,6 +94,15 @@ class InjectTab(QWidget):
         if self.invalid_logical.isChecked():
             inputs.append("--invalid-logical")
 
+        if self.invalid_string.isChecked():
+            inputs.append("--invalid-string")
+
+        if self.no_cast.isChecked():
+            inputs.append("--no-cast")
+
+        if self.no_escape.isChecked():
+            inputs.append("--no-escape")
+
         prefix_value = self.prefix.text()
         if prefix_value:
             inputs.append(f"--prefix {prefix_value}")
@@ -101,5 +119,8 @@ class InjectTab(QWidget):
         self.skip_static.setChecked(False)
         self.invalid_bignum.setChecked(False)
         self.invalid_logical.setChecked(False)
+        self.invalid_string.setChecked(False)
+        self.no_cast.setChecked(False)
+        self.no_escape.setChecked(False)
         self.prefix.clear()
         self.suffix.clear()
