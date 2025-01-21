@@ -14,26 +14,26 @@ class OptimizationTab(QWidget):
         #         background-size: cover;
         #     }
         # """)        
-        self.setStyleSheet("background-image: url(bg_test1.jpg);")
+        #self.setStyleSheet("background-image: url(bg_test1.jpg);")
         self.layout = QVBoxLayout()
 
-        self.upper_layout = QHBoxLayout()
+        #self.upper_layout = QHBoxLayout()
 
         self.turn_on_all = QCheckBox("enable all")
-        self.upper_layout.addWidget(self.turn_on_all)
+        self.layout.addWidget(self.turn_on_all)
 
         self.predict_output = QCheckBox("--predict-output")
-        self.upper_layout.addWidget(self.predict_output)
+        self.layout.addWidget(self.predict_output)
 
         self.keep_alive = QCheckBox("--keep-alive")
-        self.upper_layout.addWidget(self.keep_alive)
+        self.layout.addWidget(self.keep_alive)
 
         self.null_connection = QCheckBox("--null-connection")
-        self.upper_layout.addWidget(self.null_connection)
+        self.layout.addWidget(self.null_connection)
 
 
 
-        self.layout.addLayout(self.upper_layout)
+        #self.layout.addLayout(self.upper_layout)
         #self.setLayout(self.layout)
         #self.layout = QVBoxLayout()
 
