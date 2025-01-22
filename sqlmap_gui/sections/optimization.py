@@ -52,6 +52,11 @@ class OptimizationTab(QWidget):
         #print("collectInputs called for InjectTab")
         inputs = []
 
+        threads_m_value = self.threads_m.currentText()
+        if threads_m_value and threads_m_value!="--threads":
+            inputs.append(f"--threads={self.threads_m.currentText()}")
+        
+        
         if self.turn_on_all.isChecked():
             inputs.append("-o")
 
@@ -67,6 +72,7 @@ class OptimizationTab(QWidget):
         return inputs
 
     def clearInputs(self):
+        self.threads_m.setCurrentIndex(0)
         self.turn_on_all.setChecked(False)
         self.predict_output.setChecked(False)
         self.keep_alive.setChecked(False)
