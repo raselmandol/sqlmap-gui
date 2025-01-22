@@ -19,12 +19,6 @@ class OptimizationTab(QWidget):
 
         #self.upper_layout = QHBoxLayout()
 
-        self.threads_m = QComboBox()
-        self.threads_m.addItem("Select")
-        self.threads_m.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
-        self.layout.addWidget(QLabel("--threads"))
-        self.layout.addWidget(self.threads_m)
-
         self.turn_on_all = QCheckBox("enable all")
         self.layout.addWidget(self.turn_on_all)
 
@@ -36,6 +30,12 @@ class OptimizationTab(QWidget):
 
         self.null_connection = QCheckBox("--null-connection")
         self.layout.addWidget(self.null_connection)
+
+        self.threads_m = QComboBox()
+        self.threads_m.addItem("Select")
+        self.threads_m.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+        #self.layout.addWidget(QLabel("--threads"))
+        self.layout.addWidget(self.threads_m)
 
 
 
