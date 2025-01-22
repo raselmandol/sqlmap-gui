@@ -32,7 +32,7 @@ class OptimizationTab(QWidget):
         self.layout.addWidget(self.null_connection)
 
         self.threads_m = QComboBox()
-        self.threads_m.addItem("Select")
+        self.threads_m.addItem("--threads")
         self.threads_m.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
         #self.layout.addWidget(QLabel("--threads"))
         self.layout.addWidget(self.threads_m)
