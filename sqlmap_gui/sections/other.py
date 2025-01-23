@@ -12,10 +12,10 @@ class OtherTab(QWidget):
         self.verbose = QCheckBox("--verbose")
         self.layout.addWidget(self.verbose)
 
-        self.threads = QLineEdit(self)
-        self.threads.setPlaceholderText("--threads")
-        # self.layout.addWidget(QLabel("--threads"))
-        self.layout.addWidget(self.threads)
+        # self.threads = QLineEdit(self)
+        # self.threads.setPlaceholderText("--threads")
+        # # self.layout.addWidget(QLabel("--threads"))
+        # self.layout.addWidget(self.threads)
 
         self.level = QLineEdit(self)
         self.level.setPlaceholderText("--level")
