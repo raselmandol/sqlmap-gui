@@ -7,8 +7,8 @@ class OtherTab(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.layout = QVBoxLayout()
 
+        self.layout = QVBoxLayout()
         self.verbose = QCheckBox("--verbose")
         self.layout.addWidget(self.verbose)
 
@@ -30,8 +30,8 @@ class OtherTab(QWidget):
         if self.verbose.isChecked():
             inputs.append("--verbose")
 
-        if self.threads.text():
-            inputs.append(f"--threads={self.threads.text()}")
+        # if self.threads.text():
+        #     inputs.append(f"--threads={self.threads.text()}")
 
         if self.level.text():
             inputs.append(f"--level={self.level.text()}")
@@ -40,5 +40,5 @@ class OtherTab(QWidget):
 
     def clearInputs(self):
         self.verbose.setChecked(False)
-        self.threads.clear()
+        # self.threads.clear()
         self.level.clear()
