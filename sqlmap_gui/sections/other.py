@@ -9,18 +9,18 @@ class OtherTab(QWidget):
     def initUI(self):
 
         self.layout = QVBoxLayout()
-        self.verbose = QCheckBox("--verbose")
-        self.layout.addWidget(self.verbose)
+        # self.verbose = QCheckBox("--verbose")
+        # self.layout.addWidget(self.verbose)
 
         # self.threads = QLineEdit(self)
         # self.threads.setPlaceholderText("--threads")
         # # self.layout.addWidget(QLabel("--threads"))
         # self.layout.addWidget(self.threads)
 
-        self.level = QLineEdit(self)
-        self.level.setPlaceholderText("--level")
-        # self.layout.addWidget(QLabel("--level"))
-        self.layout.addWidget(self.level)
+        # self.level = QLineEdit(self)
+        # self.level.setPlaceholderText("--level")
+        # # self.layout.addWidget(QLabel("--level"))
+        # self.layout.addWidget(self.level)
 
         self.setLayout(self.layout)
 
