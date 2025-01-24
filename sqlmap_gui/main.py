@@ -1,6 +1,6 @@
 import sys
 import json
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QTextEdit, QTabWidget, QAction, QFileDialog, QMessageBox, QDockWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QTextEdit, QTabWidget, QAction, QFileDialog, QMessageBox, QDockWidget, QSplitter
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QProcess
 from PyQt5.QtGui import QIcon
@@ -25,7 +25,7 @@ class SqlmapGUI(QMainWindow):
 
     def initUI(self):
         self.setWindowTitle('sqlmap-GUI')
-        self.setGeometry(100, 100, 750, 400)
+        self.setGeometry(100, 100, 1100, 400)
 
         # Set the application icon
         self.setWindowIcon(QIcon('resources/icon.png'))
@@ -67,8 +67,12 @@ class SqlmapGUI(QMainWindow):
         layout.addWidget(self.tabs)
 
 
+        # Creating a splitter to make sections resizable
+        self.splitter = QSplitter(Qt.Horizontal, self)
+
         # InjectTab as a QDockWidget
         self.inject_tab = InjectTab()
+        # self.inject_tab.setStyleSheet("background: black; color: white;")
         self.inject_dock = QDockWidget("Inject(Q)", self)
         self.inject_dock.setWidget(self.inject_tab)
         self.inject_dock.setFloating(False)  # Default to docked
