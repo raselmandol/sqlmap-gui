@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout,QHBoxLayout,QPushButton, QLabel, QComboBox, QCheckBox, QLineEdit
+from PyQt5.QtCore import Qt
 
 class InjectTab(QWidget):
     def __init__(self):
@@ -6,15 +7,7 @@ class InjectTab(QWidget):
         self.initUI()
 
     def initUI(self):
-        # self.setStyleSheet("""
-        #     QWidget {
-        #         background-image: url('../assets/bg_test1.jpg');
-        #         background-repeat: no-repeat;
-        #         background-position: center;
-        #         background-size: cover;
-        #     }
-        # """)        
-        # self.setStyleSheet("background-image: url(bg_test1.jpg);")
+
         self.layout = QVBoxLayout()
 
         self.upper_layout = QHBoxLayout()
