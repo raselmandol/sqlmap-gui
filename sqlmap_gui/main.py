@@ -140,7 +140,7 @@ class SqlmapGUI(QMainWindow):
         inputs.extend(self.enumerate_tab.collectInputs())
         inputs.extend(self.file_tab.collectInputs())
         inputs.extend(self.optimization_tab.collectInputs())
-        inputs.extend(self.other_tab.collectInputs())
+        # inputs.extend(self.other_tab.collectInputs())
         inputs.extend(self.help_tab.collectInputs())
 
         self.collected_inputs = " ".join(inputs)
@@ -183,7 +183,7 @@ class SqlmapGUI(QMainWindow):
         self.enumerate_tab.clearInputs()
         self.file_tab.clearInputs()
         self.optimization_tab.clearInputs()
-        self.other_tab.clearInputs()
+        # self.other_tab.clearInputs()
         self.help_tab.clearInputs()
         #self.console_output.clear()
         #self.sqlmap_output = ""
