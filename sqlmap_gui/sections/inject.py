@@ -109,6 +109,7 @@ class InjectTab(QWidget):
 
     def clearInputs(self):
         self.param_filter.setCurrentIndex(0)
+        self.general_attack.setChecked(False)
         self.skip_static.setChecked(False)
         self.invalid_bignum.setChecked(False)
         self.invalid_logical.setChecked(False)
