@@ -24,8 +24,8 @@ class OtherTab(QWidget):
 
         self.setLayout(self.layout)
 
-    def collectInputs(self):
-        inputs = []
+    # def collectInputs(self):
+    #     inputs = []
 
         # if self.verbose.isChecked():
         #     inputs.append("--verbose")
@@ -36,9 +36,9 @@ class OtherTab(QWidget):
         # if self.level.text():
         #     inputs.append(f"--level={self.level.text()}")
 
-        return inputs
+        # return inputs
 
-    def clearInputs(self):
+    # def clearInputs(self):
         # self.verbose.setChecked(False)
         # # self.threads.clear()
         # self.level.clear()
