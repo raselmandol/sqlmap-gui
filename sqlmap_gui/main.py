@@ -45,7 +45,7 @@ class SqlmapGUI(QMainWindow):
         # Tabs for different sections
         self.tabs = QTabWidget()
         # self.inject_tab = InjectTab()
-        # self.detection_tab = DetectionTab()
+        self.detection_tab = DetectionTab()
         self.request_tab = RequestTab()
         self.enumerate_tab = EnumerateTab()
         self.file_tab = FileTab()
@@ -55,7 +55,7 @@ class SqlmapGUI(QMainWindow):
         self.help_tab = HelpTab()
 
         # self.tabs.addTab(self.inject_tab, "Inject(Q)")
-        # self.tabs.addTab(self.detection_tab,"Detection(DD)")
+        self.tabs.addTab(self.detection_tab,"Detection(DD)")
         self.tabs.addTab(self.request_tab, "Request(W)")
         self.tabs.addTab(self.enumerate_tab, "Enumerate(E)")
         self.tabs.addTab(self.file_tab, "File(R)")
@@ -79,16 +79,6 @@ class SqlmapGUI(QMainWindow):
         self.inject_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
 
         self.addDockWidget(Qt.LeftDockWidgetArea, self.inject_dock)
-
-
-
-        self.detection_tab = DetectionTab()
-        self.detection_tab = QDockWidget("Detection(DD)", self)
-        self.detection_tab.setWidget(self.detection_tab)
-        self.detection_tab.setFloating(False)  # Default to docked
-        self.detection_tab.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
-
-        self.addDockWidget(Qt.LeftDockWidgetArea, self.detection_tab)
 
         # Buttons
         button_layout = QHBoxLayout()
