@@ -25,7 +25,7 @@ class SqlmapGUI(QMainWindow):
 
     def initUI(self):
         self.setWindowTitle('sqlmap-GUI')
-        self.setGeometry(100, 100, 1100, 400)
+        self.setGeometry(100, 100, 1050, 400)
 
         # Set the application icon
         self.setWindowIcon(QIcon('resources/icon.png'))
