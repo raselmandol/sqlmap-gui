@@ -18,7 +18,7 @@ class EnumerateTab(QWidget):
         self.enumerate_dbs = QCheckBox("Enumerate Databases")
         self.layout.addWidget(self.enumerate_dbs)
 
-        self.enumerate_all = QCheckBox("--a Retrieve all")
+        self.enumerate_all = QCheckBox("--a")
         self.layout.addWidget(self.enumerate_all)
 
         self.dbms_banner = QCheckBox("--banner DBMS Banner")
@@ -57,7 +57,7 @@ class EnumerateTab(QWidget):
             inputs.append("--current-user")
 
         if self.custom_query.text():
-            inputs.append(f"--sql-query {self.custom_query.text()}")
+            inputs.append(f"--sql-query={self.custom_query.text()}")
 
         return inputs
 
