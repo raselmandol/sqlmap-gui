@@ -29,7 +29,7 @@ class EnumerateTab(QWidget):
 
 
         self.custom_query = QLineEdit(self)
-        self.custom_query.setPlaceholderText("Custom Query")
+        self.custom_query.setPlaceholderText("--sql-query=")
         # self.layout.addWidget(QLabel("Custom Query"))
         self.layout.addWidget(self.custom_query)
 
