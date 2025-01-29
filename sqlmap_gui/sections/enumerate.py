@@ -27,6 +27,9 @@ class EnumerateTab(QWidget):
         self.current_user = QCheckBox("--current-user")
         self.layout.addWidget(self.current_user)
 
+        self.sql_shell = QCheckBox("--sql-shell")
+        self.layout.addWidget(self.sql_shell)
+
 
         self.custom_query = QLineEdit(self)
         self.custom_query.setPlaceholderText("--sql-query=")
@@ -56,6 +59,9 @@ class EnumerateTab(QWidget):
         if self.current_user.isChecked():
             inputs.append("--current-user")
 
+        if self.sql_shell.isChecked():
+            inputs.append("--sql-shell")
+
         if self.custom_query.text():
             inputs.append(f"--sql-query={self.custom_query.text()}")
 
@@ -68,4 +74,5 @@ class EnumerateTab(QWidget):
         self.enumerate_all.setChecked(False)
         self.dbms_banner.setChecked(False)
         self.current_user.setChecked(False)
+        self.sql_shell.setChecked(False)
         self.custom_query.clear()
