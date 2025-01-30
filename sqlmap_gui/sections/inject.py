@@ -18,7 +18,6 @@ class InjectTab(QWidget):
         self.upper_layout.addWidget(QLabel("--param-filter"))
         self.upper_layout.addWidget(self.param_filter)
 
-
         self.prefix = QLineEdit(self)
         self.prefix.setPlaceholderText("payload prefix str")
         self.upper_layout.addWidget(QLabel("--prefix"))
@@ -29,15 +28,7 @@ class InjectTab(QWidget):
         self.upper_layout.addWidget(QLabel("--suffix"))
         self.upper_layout.addWidget(self.suffix)
 
-
-
-
-
-
-
         self.layout.addLayout(self.upper_layout)
-        #self.setLayout(self.layout)
-        #self.layout = QVBoxLayout()
 
         self.general_attack = QCheckBox("General filter")
         self.layout.addWidget(self.general_attack)
@@ -60,15 +51,13 @@ class InjectTab(QWidget):
         self.no_escape = QCheckBox("--no-escape")
         self.layout.addWidget(self.no_escape)
 
-
-
         # Add more here 
         # Set the main layout (self.layout) for the current widget (InjectTab)
         self.setLayout(self.layout)
 
     def collectInputs(self):
         
-        #print("collectInputs called for InjectTab")
+        #print("collectInputs called for InjectTab")  print confirmation (console)
         inputs = []
 
         param_filter_value = self.param_filter.currentText()
@@ -104,7 +93,7 @@ class InjectTab(QWidget):
         if suffix_value:
             inputs.append(f"--suffix {suffix_value}")
 
-        #print(f"InjectTab inputs: {inputs}")
+        #print(f"InjectTab inputs: {inputs}") # Print collected inputs
         return inputs
 
     def clearInputs(self):
