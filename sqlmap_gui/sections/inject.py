@@ -19,12 +19,12 @@ class InjectTab(QWidget):
         self.upper_layout.addWidget(self.param_filter)
 
         self.prefix = QLineEdit(self)
-        self.prefix.setPlaceholderText("payload prefix str")
+        self.prefix.setPlaceholderText("payload prefix")
         self.upper_layout.addWidget(QLabel("--prefix"))
         self.upper_layout.addWidget(self.prefix)
 
         self.suffix = QLineEdit(self)
-        self.suffix.setPlaceholderText("suffix")
+        self.suffix.setPlaceholderText("payload suffix")
         self.upper_layout.addWidget(QLabel("--suffix"))
         self.upper_layout.addWidget(self.suffix)
 
