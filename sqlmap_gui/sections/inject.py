@@ -91,7 +91,7 @@ class InjectTab(QWidget):
 
         suffix_value = self.suffix.text()
         if suffix_value:
-            inputs.append(f"--suffix {suffix_value}")
+            inputs.append(f"--suffix={suffix_value}")
 
         #print(f"InjectTab inputs: {inputs}") # Print collected inputs
         return inputs
