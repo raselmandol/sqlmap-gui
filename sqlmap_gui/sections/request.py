@@ -73,14 +73,19 @@ class RequestTab(QWidget):
         if self.ignore_proxy.isChecked():
             inputs.append("--ignore-proxy")
 
-        if self.custom_headers.text():
-            inputs.append(f"--headers {self.custom_headers.text()}")
+        # Collect the main custom headers field
+        custom_headers_text = self.custom_headers.text().strip()
+        if custom_headers_text:
+            inputs.append(f"--headers {custom_headers_text}")
 
+        # Collect dynamically added headers, but skip self.custom_headers
         for i in range(self.layout.count()):
             widget = self.layout.itemAt(i).widget()
-            if isinstance(widget, QLineEdit) and widget.placeholderText() == "Custom Headers (key:value)":
-                if widget.text():
-                    inputs.append(f"--headers {widget.text()}")
+            if isinstance(widget, QLineEdit) and widget != self.custom_headers:
+                header_text = widget.text().strip()
+                if header_text:
+                    inputs.append(f"--headers {header_text}")
+
 
         return inputs
 
