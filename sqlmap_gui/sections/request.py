@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox, QCheckBox, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QComboBox, QCheckBox, QLineEdit, QPushButton
 
 class RequestTab(QWidget):
     def __init__(self):
@@ -46,9 +46,36 @@ class RequestTab(QWidget):
         self.setLayout(self.layout)
 
     def addHeader(self):
+        header_layout = QHBoxLayout()
+
+        # Creating a new line edit for the custom header
         new_header = QLineEdit(self)
         new_header.setPlaceholderText("Custom Headers (key:value)")
-        self.layout.insertWidget(self.layout.count() - 1, new_header)
+
+        # Creating a delete button
+        delete_button = QPushButton("X")
+        delete_button.setFixedSize(30, 25)  # Set a small size for the button (as small)
+
+        # Removing the header row when delete button is clicked
+        delete_button.clicked.connect(lambda: self.removeHeader(header_layout))
+
+        # Adding the new header and delete button to the horizontal layout
+        header_layout.addWidget(new_header)
+        header_layout.addWidget(delete_button)
+
+        # Adding the horizontal layout to the main layout
+        container = QWidget()
+        container.setLayout(header_layout)
+        self.layout.insertWidget(self.layout.count() - 1, container)
+    def removeHeader(self, header_layout):
+        # Finding the parent container widget and remove it
+        for i in range(self.layout.count()):
+            widget = self.layout.itemAt(i).widget()
+            if isinstance(widget, QWidget) and widget.layout() == header_layout:
+                self.layout.removeWidget(widget)
+                widget.deleteLater()  # Properly delete the widget to free memory
+                break
+
 
     def collectInputs(self):
         inputs = []
@@ -78,14 +105,16 @@ class RequestTab(QWidget):
         if custom_headers_text:
             inputs.append(f"--headers={custom_headers_text}")
 
-        # Collect dynamically added headers, but skip self.custom_headers
+        # Collect dynamically added headers
         for i in range(self.layout.count()):
-            widget = self.layout.itemAt(i).widget()
-            if isinstance(widget, QLineEdit) and widget != self.custom_headers:
-                header_text = widget.text().strip()
-                if header_text:
-                    inputs.append(f"--headers={header_text}")
-
+            container = self.layout.itemAt(i).widget()
+            if isinstance(container, QWidget) and container.layout():
+                for j in range(container.layout().count()):  # Iterate through container's layout (no of fields X input)
+                    widget = container.layout().itemAt(j).widget()
+                    if isinstance(widget, QLineEdit):
+                        header_text = widget.text().strip()
+                        if header_text:
+                            inputs.append(f"--headers={header_text}")
 
         return inputs
 
