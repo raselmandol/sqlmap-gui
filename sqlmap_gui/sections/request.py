@@ -83,7 +83,7 @@ class RequestTab(QWidget):
         https_method_value = self.http_method.currentText()
         if https_method_value and https_method_value!="Select":
         #if self.http_method.currentText() and http_method.currentText()!="Select":
-            inputs.append(f"--method {self.http_method.currentText()}")
+            inputs.append(f"--method={self.http_method.currentText()}")
 
         if self.ssl_tls.isChecked():
             inputs.append("--force-ssl")
