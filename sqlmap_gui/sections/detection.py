@@ -38,7 +38,7 @@ class DetectionTab(QWidget):
 
         technique_value = self.technique.text()
         if technique_value:
-            inputs.append(f"--technique {self.technique.text()}")
+            inputs.append(f"--technique={self.technique.text()}")
 
         time_sec_value = self.time_sec.text()
         if time_sec_value:
