@@ -46,7 +46,7 @@ class DetectionTab(QWidget):
 
         union_cols_value = self.union_cols.text()
         if union_cols_value:
-            inputs.append(f"--union-cols {union_cols_value}")
+            inputs.append(f"--union-cols={union_cols_value}")
 
         union_char_value = self.union_char.text()
         if union_char_value:
