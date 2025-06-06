@@ -63,7 +63,7 @@ class EnumerateTab(QWidget):
             inputs.append("--sql-shell")
 
         if self.custom_query.text():
-            inputs.append(f"--sql-query={self.custom_query.text()}")
+            inputs.append(f" {self.custom_query.text()}")
 
         return inputs
 
