@@ -74,23 +74,6 @@ python sqlmap_gui
 
 ---
 
-## Folder Structure
-
-```plaintext
-sqlmap-gui/
-├── build/                     # Auto-generated build files (ignored)
-├── sqlmap/                    # sqlmap tool integration
-├── sqlmap_env/                # Virtual environment (ignored)
-├── sqlmap_gui/                # Main GUI source code
-│   ├── sections/              # Modular GUI sections
-│   ├── __init__.py            # Initialization script
-│   ├── main.py                # Main application entry point
-├── sqlmap_gui.egg-info/       # Metadata files (ignored)
-├── setup.py                   # Setup script
-├── README.md                  # Project documentation
-```
-
----
 
 ## Example
 
