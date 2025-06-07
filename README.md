@@ -146,7 +146,7 @@ This project is licensed under the MIT License, [sqlmap license](https://raw.git
 
 ## To-Do
 
-~~Add more screenshots of the GUI in action.~~
+
 - [ ]  Enhance error handling.
 - [ ]  Improve documentation with more examples.
 - [ ]  More tabs/ more options
