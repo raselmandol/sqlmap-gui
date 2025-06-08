@@ -19,7 +19,7 @@ class OptimizationTab(QWidget):
 
         #self.upper_layout = QHBoxLayout()
 
-        self.turn_on_all = QCheckBox("enable all")
+        self.turn_on_all = QCheckBox("enable all (-o)")
         self.layout.addWidget(self.turn_on_all)
 
         self.predict_output = QCheckBox("--predict-output")
