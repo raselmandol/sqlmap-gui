@@ -51,7 +51,7 @@ class SqlmapGUI(QMainWindow):
         self.enumerate_tab = EnumerateTab()
         self.file_tab = FileTab()
         self.optimization_tab = OptimizationTab()
-        self.techniques_tab = TechniquesTab()        
+        self.detection_tab = DetectionTab()        
         self.other_tab = OtherTab()
 
         self.help_tab = HelpTab()
@@ -62,7 +62,7 @@ class SqlmapGUI(QMainWindow):
         self.tabs.addTab(self.enumerate_tab, "Enumerate(E)")
         self.tabs.addTab(self.file_tab, "File(R)")
         self.tabs.addTab(self.optimization_tab, "Optimization(OO)")
-        self.tabs.addTab(self.techniques_tab, "Techniques(T)")
+        self.tabs.addTab(self.detection_tab, "Detection(DD)")
         self.tabs.addTab(self.other_tab, "Other(O)")
         self.tabs.addTab(self.help_tab,"Help/General")
 
@@ -85,13 +85,13 @@ class SqlmapGUI(QMainWindow):
 
 
 
-        self.detection_tab = DetectionTab()
-        self.detection_dock = QDockWidget("Detection(DD)", self)
-        self.detection_dock.setWidget(self.detection_tab)
-        self.detection_dock.setFloating(False)  # Default to docked
-        self.detection_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
+        self.techniques_tab = TechniquesTab()
+        self.techniques_dock = QDockWidget("Techniques(T)", self)
+        self.techniques_dock.setWidget(self.detection_tab)
+        self.techniques_dock.setFloating(False)  # Default to docked
+        self.techniques_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
 
-        self.addDockWidget(Qt.LeftDockWidgetArea, self.detection_dock)
+        self.addDockWidget(Qt.LeftDockWidgetArea, self.techniques_dock)
 
         # Buttons
         button_layout = QHBoxLayout()
@@ -196,6 +196,7 @@ class SqlmapGUI(QMainWindow):
         self.enumerate_tab.clearInputs()
         self.file_tab.clearInputs()
         self.optimization_tab.clearInputs()
+        self.techniques_tab.clearInputs()
         self.detection_tab.clearInputs()
         # self.other_tab.clearInputs()
         self.help_tab.clearInputs()
