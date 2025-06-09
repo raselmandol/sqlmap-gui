@@ -87,7 +87,7 @@ class SqlmapGUI(QMainWindow):
 
         self.techniques_tab = TechniquesTab()
         self.techniques_dock = QDockWidget("Techniques(T)", self)
-        self.techniques_dock.setWidget(self.detection_tab)
+        self.techniques_dock.setWidget(self.techniques_tab)
         self.techniques_dock.setFloating(False)  # Default to docked
         self.techniques_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
 
