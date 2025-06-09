@@ -153,6 +153,7 @@ class SqlmapGUI(QMainWindow):
         inputs.extend(self.enumerate_tab.collectInputs())
         inputs.extend(self.file_tab.collectInputs())
         inputs.extend(self.optimization_tab.collectInputs())
+        inputs.extend(self.techniques_tab.collectInputs())
         # inputs.extend(self.other_tab.collectInputs())
         inputs.extend(self.help_tab.collectInputs())
 
