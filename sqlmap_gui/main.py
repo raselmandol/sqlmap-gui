@@ -12,6 +12,7 @@ from sqlmap_gui.sections.file import FileTab
 from sqlmap_gui.sections.optimization import OptimizationTab
 from sqlmap_gui.sections.other import OtherTab
 from sqlmap_gui.sections.detection import DetectionTab
+from sqlmap_gui.sections.techniques import TechniquesTab
 from sqlmap_gui.sections.help import HelpTab
 
 class SqlmapGUI(QMainWindow):
@@ -49,7 +50,8 @@ class SqlmapGUI(QMainWindow):
         self.request_tab = RequestTab()
         self.enumerate_tab = EnumerateTab()
         self.file_tab = FileTab()
-        self.optimization_tab = OptimizationTab()        
+        self.optimization_tab = OptimizationTab()
+        self.techniques_tab = TechniquesTab()        
         self.other_tab = OtherTab()
 
         self.help_tab = HelpTab()
@@ -60,6 +62,7 @@ class SqlmapGUI(QMainWindow):
         self.tabs.addTab(self.enumerate_tab, "Enumerate(E)")
         self.tabs.addTab(self.file_tab, "File(R)")
         self.tabs.addTab(self.optimization_tab, "Optimization(OO)")
+        self.tabs.addTab(self.techniques_tab, "Techniques(T)")
         self.tabs.addTab(self.other_tab, "Other(O)")
         self.tabs.addTab(self.help_tab,"Help/General")
 
