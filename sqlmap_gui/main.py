@@ -198,7 +198,6 @@ class SqlmapGUI(QMainWindow):
         self.file_tab.clearInputs()
         self.optimization_tab.clearInputs()
         self.techniques_tab.clearInputs()
-        
         self.detection_tab.clearInputs()
         # self.other_tab.clearInputs()
         self.help_tab.clearInputs()

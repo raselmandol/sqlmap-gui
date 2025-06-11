@@ -46,9 +46,18 @@ class DetectionTab(QWidget):
         if risk_value and risk_value!="Select":
             inputs.append(f"--risk={risk_value}")
 
+        dstring_value = self.dstring.text()
+        if dstring_value:
+            inputs.append(f"--string={dstring_value}")      
+
+        notString_value = self.notString.text()
+        if notString_value:
+            inputs.append(f"--not-string={notString_value}")      
 
         return inputs
 
     def clearInputs(self):
         self.dlevel.setCurrentIndex(0)
-        self.risk.setCurrentIndex(0)       
+        self.risk.setCurrentIndex(0)  
+        self.dstring.clear()
+        self.notString.clear()     
