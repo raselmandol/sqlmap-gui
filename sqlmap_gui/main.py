@@ -148,7 +148,7 @@ class SqlmapGUI(QMainWindow):
 
         # Collect inputs from all tabs
         inputs.extend(self.inject_tab.collectInputs())
-        # inputs.extend(self.detection_tab.collectInputs())
+        inputs.extend(self.detection_tab.collectInputs())
         inputs.extend(self.request_tab.collectInputs())
         inputs.extend(self.enumerate_tab.collectInputs())
         inputs.extend(self.file_tab.collectInputs())
@@ -198,7 +198,7 @@ class SqlmapGUI(QMainWindow):
         self.file_tab.clearInputs()
         self.optimization_tab.clearInputs()
         self.techniques_tab.clearInputs()
-        # self.detection_tab.clearInputs()
+        self.detection_tab.clearInputs()
         # self.other_tab.clearInputs()
         self.help_tab.clearInputs()
         #self.console_output.clear()
