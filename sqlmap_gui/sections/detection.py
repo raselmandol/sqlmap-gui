@@ -25,7 +25,6 @@ class DetectionTab(QWidget):
         self.layout.addWidget(QLabel("--string"))
         self.layout.addWidget(self.dstring)
 
-
         self.notString = QLineEdit(self)
         self.notString.setPlaceholderText("e.g., NOT-STRING")
         self.layout.addWidget(QLabel("--not-string"))
@@ -35,7 +34,6 @@ class DetectionTab(QWidget):
         self.regexp.setPlaceholderText("e.g., REGEXP")
         self.layout.addWidget(QLabel("--regexp"))
         self.layout.addWidget(self.regexp)
-
 
         self.dCode = QLineEdit(self)
         self.dCode.setPlaceholderText("e.g., CODE")
