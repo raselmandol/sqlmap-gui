@@ -31,6 +31,11 @@ class DetectionTab(QWidget):
         self.layout.addWidget(QLabel("--not-string"))
         self.layout.addWidget(self.notString)
 
+        self.regexp = QLineEdit(self)
+        self.regexp.setPlaceholderText("e.g., REGEXP")
+        self.layout.addWidget(QLabel("--regexp"))
+        self.layout.addWidget(self.regexp)
+
        
         self.setLayout(self.layout)
 
@@ -52,7 +57,11 @@ class DetectionTab(QWidget):
 
         notString_value = self.notString.text()
         if notString_value:
-            inputs.append(f"--not-string={notString_value}")      
+            inputs.append(f"--not-string={notString_value}")
+
+        regexp_value = self.regexp.text()
+        if regexp_value:
+            inputs.append(f"--regexp={regexp_value}")      
 
         return inputs
 
@@ -61,3 +70,4 @@ class DetectionTab(QWidget):
         self.risk.setCurrentIndex(0)  
         self.dstring.clear()
         self.notString.clear()     
+        self.regexp.clear()
