@@ -80,3 +80,4 @@ class DetectionTab(QWidget):
         self.dstring.clear()
         self.notString.clear()     
         self.regexp.clear()
+        self.dCode.clear()
