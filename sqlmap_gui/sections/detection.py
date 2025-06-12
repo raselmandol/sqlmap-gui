@@ -36,6 +36,11 @@ class DetectionTab(QWidget):
         self.layout.addWidget(QLabel("--regexp"))
         self.layout.addWidget(self.regexp)
 
+
+        self.dCode = QLineEdit(self)
+        self.dCode.setPlaceholderText("e.g., CODE")
+        self.layout.addWidget(QLabel("--code"))
+        self.layout.addWidget(self.dCode)
        
         self.setLayout(self.layout)
 
@@ -62,6 +67,10 @@ class DetectionTab(QWidget):
         regexp_value = self.regexp.text()
         if regexp_value:
             inputs.append(f"--regexp={regexp_value}")      
+
+        dCode_value = self.dCode.text()
+        if dCode_value:
+            inputs.append(f"--code={dCode_value}")      
 
         return inputs
 
