@@ -76,6 +76,12 @@ class DetectionTab(QWidget):
         if dCode_value:
             inputs.append(f"--code={dCode_value}")      
 
+        if self.smart.isChecked():
+            inputs.append("--smart")
+
+        if self.textOnly.isChecked():
+            inputs.append("--text-only")
+
         return inputs
 
     def clearInputs(self):
@@ -85,3 +91,5 @@ class DetectionTab(QWidget):
         self.notString.clear()     
         self.regexp.clear()
         self.dCode.clear()
+        self.smart.setChecked(False)
+        self.textOnly.setChecked(False)
