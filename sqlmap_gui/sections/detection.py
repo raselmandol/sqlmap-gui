@@ -39,7 +39,10 @@ class DetectionTab(QWidget):
         self.dCode.setPlaceholderText("e.g., CODE")
         self.layout.addWidget(QLabel("--code"))
         self.layout.addWidget(self.dCode)
-       
+
+        self.smart = QCheckBox("--smart")
+        self.layout.addWidget(self.smart)
+
         self.setLayout(self.layout)
 
     def collectInputs(self):
