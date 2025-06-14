@@ -99,3 +99,4 @@ class DetectionTab(QWidget):
         self.dCode.clear()
         self.smart.setChecked(False)
         self.textOnly.setChecked(False)
+        self.titles.setChecked(False)
