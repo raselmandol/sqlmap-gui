@@ -46,6 +46,9 @@ class DetectionTab(QWidget):
         self.textOnly = QCheckBox("--text-only")
         self.layout.addWidget(self.textOnly)
 
+        self.titles = QCheckBox("--titles")
+        self.layout.addWidget(self.titles)
+        
         self.setLayout(self.layout)
 
     def collectInputs(self):
