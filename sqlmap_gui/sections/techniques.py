@@ -28,6 +28,11 @@ class TechniquesTab(QWidget):
         self.layout.addWidget(QLabel("--union-char"))
         self.layout.addWidget(self.union_char)
 
+        self.secondUrl = QLineEdit(self)
+        self.secondUrl.setPlaceholderText("Resulting page URL searched for second-order response")
+        self.layout.addWidget(QLabel("--second-url"))
+        self.layout.addWidget(self.secondUrl)
+
         self.no_cast = QCheckBox("--no-cast")
         self.layout.addWidget(self.no_cast)
 
@@ -52,6 +57,10 @@ class TechniquesTab(QWidget):
         if union_char_value:
             inputs.append(f"--union-char {union_char_value}")
 
+        secondUrl_value = self.secondUrl.text()
+        if secondUrl_value:
+            inputs.append(f"--second-url={secondUrl_value}")
+
         if self.no_cast.isChecked():
             inputs.append("--no-cast")
 
@@ -62,4 +71,5 @@ class TechniquesTab(QWidget):
         self.time_sec.clear()
         self.union_cols.clear()
         self.union_char.clear()
+        self.secondUrl.clear()
         self.no_cast.setChecked(False)
