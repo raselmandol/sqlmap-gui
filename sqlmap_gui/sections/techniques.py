@@ -33,6 +33,11 @@ class TechniquesTab(QWidget):
         self.layout.addWidget(QLabel("--second-url"))
         self.layout.addWidget(self.secondUrl)
 
+        self.secondReq = QLineEdit(self)
+        self.secondReq.setPlaceholderText("--second-req")
+        self.layout.addWidget(QLabel("--second-req"))
+        self.layout.addWidget(self.secondReq)
+
         self.no_cast = QCheckBox("--no-cast")
         self.layout.addWidget(self.no_cast)
 
@@ -61,6 +66,10 @@ class TechniquesTab(QWidget):
         if secondUrl_value:
             inputs.append(f"--second-url={secondUrl_value}")
 
+        secondReq_value = self.secondReq.text()
+        if secondReq_value:
+            inputs.append(f"--second-req={secondReq_value}")
+
         if self.no_cast.isChecked():
             inputs.append("--no-cast")
 
@@ -72,4 +81,5 @@ class TechniquesTab(QWidget):
         self.union_cols.clear()
         self.union_char.clear()
         self.secondUrl.clear()
+        self.secondReq.clear()
         self.no_cast.setChecked(False)
