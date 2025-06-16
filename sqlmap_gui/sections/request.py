@@ -21,6 +21,11 @@ class RequestTab(QWidget):
         self.layout.addWidget(QLabel("--host"))
         self.layout.addWidget(self.rHost)
 
+        self.referer = QLineEdit(self)
+        self.referer.setPlaceholderText("HTTP Referer header value")
+        self.layout.addWidget(QLabel("--referer"))
+        self.layout.addWidget(self.referer)
+
         # Add a checkbox for SSL/TLS
         self.ssl_tls = QCheckBox("Use SSL/TLS")
         self.layout.addWidget(self.ssl_tls)
@@ -94,6 +99,10 @@ class RequestTab(QWidget):
         if rHost_value:
             inputs.append(f"--host={rHost_value}")      
 
+        referer_value = self.referer.text()
+        if referer_value:
+            inputs.append(f"--referer={referer_value}")    
+
         if self.ssl_tls.isChecked():
             inputs.append("--force-ssl")
 
@@ -130,6 +139,7 @@ class RequestTab(QWidget):
     def clearInputs(self):
         self.http_method.setCurrentIndex(0)
         self.rHost.clear()
+        self.referer.clear()
         self.ssl_tls.setChecked(False)
         self.drop_set_cookie.setChecked(False)
         self.mobile.setChecked(False)
