@@ -16,6 +16,11 @@ class RequestTab(QWidget):
         self.layout.addWidget(QLabel("HTTP Method"))
         self.layout.addWidget(self.http_method)
 
+        self.rHost = QLineEdit(self)
+        self.rHost.setPlaceholderText("HTTP Host header value")
+        self.layout.addWidget(QLabel("--host"))
+        self.layout.addWidget(self.rHost)
+
         # Add a checkbox for SSL/TLS
         self.ssl_tls = QCheckBox("Use SSL/TLS")
         self.layout.addWidget(self.ssl_tls)
@@ -85,6 +90,10 @@ class RequestTab(QWidget):
         #if self.http_method.currentText() and http_method.currentText()!="Select":
             inputs.append(f"--method={self.http_method.currentText()}")
 
+        rHost_value = self.rHost.text()
+        if rHost_value:
+            inputs.append(f"--host={rHost_value}")      
+
         if self.ssl_tls.isChecked():
             inputs.append("--force-ssl")
 
@@ -120,6 +129,7 @@ class RequestTab(QWidget):
 
     def clearInputs(self):
         self.http_method.setCurrentIndex(0)
+        self.rHost.clear()
         self.ssl_tls.setChecked(False)
         self.drop_set_cookie.setChecked(False)
         self.mobile.setChecked(False)
