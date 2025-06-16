@@ -26,6 +26,11 @@ class RequestTab(QWidget):
         self.layout.addWidget(QLabel("--referer"))
         self.layout.addWidget(self.referer)
 
+        self.authType = QLineEdit(self)
+        self.authType.setPlaceholderText("HTTP authentication type (Basic, Digest, NTLM or PKI)")
+        self.layout.addWidget(QLabel("--auth-type"))
+        self.layout.addWidget(self.authType)
+
         # Add a checkbox for SSL/TLS
         self.ssl_tls = QCheckBox("Use SSL/TLS")
         self.layout.addWidget(self.ssl_tls)
@@ -103,6 +108,10 @@ class RequestTab(QWidget):
         if referer_value:
             inputs.append(f"--referer={referer_value}")    
 
+        authType_value = self.authType.text()
+        if authType_value:
+            inputs.append(f"--auth-type={authType_value}")  
+
         if self.ssl_tls.isChecked():
             inputs.append("--force-ssl")
 
@@ -140,6 +149,7 @@ class RequestTab(QWidget):
         self.http_method.setCurrentIndex(0)
         self.rHost.clear()
         self.referer.clear()
+        self.authType.clear()
         self.ssl_tls.setChecked(False)
         self.drop_set_cookie.setChecked(False)
         self.mobile.setChecked(False)
