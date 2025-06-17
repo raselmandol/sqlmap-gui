@@ -46,7 +46,6 @@ class SqlmapGUI(QMainWindow):
         # Tabs for different sections
         self.tabs = QTabWidget()
         # self.inject_tab = InjectTab()
-        # self.detection_tab = DetectionTab()
         self.detection_tab = DetectionTab()    
         self.request_tab = RequestTab()
         self.enumerate_tab = EnumerateTab()
