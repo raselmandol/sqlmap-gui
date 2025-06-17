@@ -1,7 +1,6 @@
 """
-Sample page template to add in the main page
-change the name, add widgets whatever you need, collect input and then send them back to logic
-
+Sample page template to add in the main GUI 
+change the name, add widgets whatever you need, collect input and then send them back to main()
 
 """
 
@@ -16,31 +15,18 @@ class HelpTab(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
 
-
+        # Widgets, contents should be added here
 
         self.setLayout(self.layout)
 
     def collectInputs(self):
         inputs = []
 
-        
-        # https_method_value = self.http_method.currentText()
-        # if https_method_value and https_method_value!="Select":
-        # #if self.http_method.currentText() and http_method.currentText()!="Select":
-        #     inputs.append(f"--method {self.http_method.currentText()}")
+        # if self.sample_checkbox.isChecked():
+        #     inputs.append("--sample-command")
 
-        # if self.ssl_tls.isChecked():
-        #     inputs.append("--force-ssl")
-
-        # if self.custom_headers.text():
-        #     inputs.append(f"--headers {self.custom_headers.text()}")
-
-        # for i in range(self.layout.count()):
-        #     widget = self.layout.itemAt(i).widget()
-        #     if isinstance(widget, QLineEdit) and widget.placeholderText() == "Custom Headers (key:value)":
-        #         if widget.text():
-        #             inputs.append(f"--headers {widget.text()}")
-
+        # if self.sample.text():
+        #     inputs.append(f"--sample={self.sample.text()}")
 
         return inputs
 
