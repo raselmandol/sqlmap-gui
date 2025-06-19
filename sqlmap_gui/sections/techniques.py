@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox, QLineEdit, QCheckBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox, QLineEdit, QCheckBox, QHBoxLayout
 
 class TechniquesTab(QWidget):
     def __init__(self):
@@ -8,15 +8,17 @@ class TechniquesTab(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
 
-        self.technique = QLineEdit(self)
+        row1 = QHBoxLayout()
+        self.technique = QLineEdit()
         self.technique.setPlaceholderText("e.g., BEUSTQ")
-        self.layout.addWidget(QLabel("--technique"))
-        self.layout.addWidget(self.technique)
+        row1.addWidget(QLabel("--technique"))
+        row1.addWidget(self.technique)
 
-        self.time_sec = QLineEdit(self)
+        self.time_sec = QLineEdit()
         self.time_sec.setPlaceholderText("Delay in seconds")
-        self.layout.addWidget(QLabel("--time-sec"))
-        self.layout.addWidget(self.time_sec)
+        row1.addWidget(QLabel("--time-sec"))
+        row1.addWidget(self.time_sec)
+        self.layout.addLayout(row1)
 
         self.union_cols = QLineEdit(self)
         self.union_cols.setPlaceholderText("Range of columns to test (e.g., 1-10)")
