@@ -8,25 +8,32 @@ class TechniquesTab(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
 
-        self.technique = QLineEdit(self)
+
+        # Row 1 (Horizontal --> QHBoxLayout)
+        row1 = QHBoxLayout()
+        self.technique = QLineEdit()
         self.technique.setPlaceholderText("e.g., BEUSTQ")
-        self.layout.addWidget(QLabel("--technique"))
-        self.layout.addWidget(self.technique)
+        row1.addWidget(QLabel("--technique"))
+        row1.addWidget(self.technique)
 
-        self.time_sec = QLineEdit(self)
+        self.time_sec = QLineEdit()
         self.time_sec.setPlaceholderText("Delay in seconds")
-        self.layout.addWidget(QLabel("--time-sec"))
-        self.layout.addWidget(self.time_sec)
+        row1.addWidget(QLabel("--time-sec"))
+        row1.addWidget(self.time_sec)
+        self.layout.addLayout(row1)
 
-        self.union_cols = QLineEdit(self)
-        self.union_cols.setPlaceholderText("Range of columns to test (e.g., 1-10)")
-        self.layout.addWidget(QLabel("--union-cols"))
-        self.layout.addWidget(self.union_cols)
+        # Row 2 --> --union-cols & --union-char
+        row2 = QHBoxLayout()
+        self.union_cols = QLineEdit()
+        self.union_cols.setPlaceholderText("Range of columns (e.g., 1-10)")
+        row2.addWidget(QLabel("--union-cols"))
+        row2.addWidget(self.union_cols)
 
-        self.union_char = QLineEdit(self)
-        self.union_char.setPlaceholderText("Character for bruteforcing columns")
-        self.layout.addWidget(QLabel("--union-char"))
-        self.layout.addWidget(self.union_char)
+        self.union_char = QLineEdit()
+        self.union_char.setPlaceholderText("Char for bruteforcing columns")
+        row2.addWidget(QLabel("--union-char"))
+        row2.addWidget(self.union_char)
+        self.layout.addLayout(row2)
 
         self.secondUrl = QLineEdit(self)
         self.secondUrl.setPlaceholderText("Resulting page URL searched for second-order response")
