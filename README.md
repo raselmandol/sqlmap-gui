@@ -64,6 +64,27 @@ python sqlmap_gui
 ```
 ---
 
+##  Build Executable (Windows)
+
+if you want to build an `.exe`:
+
+### Install PyInstaller:
+   ```bash
+   pip install pyinstaller
+   ```
+
+> **Note:** Already added in `requirements.txt`. (If you want to ignore it, make sure to remove it from `requirements.txt`.)
+
+
+Convert your PNG icon to ICO.
+
+### Run:
+   ```bash
+   pyinstaller --name sqlmap-gui --onefile --windowed --icon=icon.ico sqlmap_gui/main.py
+   ```
+
+---
+
 ## How to Use
 
  1. Launch the GUI (`python sqlmap_gui`).
