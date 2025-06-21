@@ -169,6 +169,7 @@ This project is licensed under the MIT License, [sqlmap license](https://raw.git
 
 
 - [ ]  Enhance error handling.
+- [ ]  Builder.bat script
 - [ ]  Option to load Sqlmap source/folder selection
 - [ ]  Improve documentation with more examples.
 - [ ]  More tabs/ more options
