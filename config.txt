@@ -1,0 +1,6 @@
+name=sqlmap-gui
+icon=icon.ico
+distpath=
+workpath=
+add-data=
+paths=
