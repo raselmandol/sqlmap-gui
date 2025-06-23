@@ -85,6 +85,36 @@ Convert your PNG icon to ICO.
 
 ---
 
+## Builder Script (`builder.bat`)
+###  Usage
+Run the script with one of the following flags:
+
+```bash
+builder.bat --build
+```
+Builds the project using:
+
+```bash
+pip install -e .
+```
+
+```bash
+builder.bat --run
+```
+Runs the main application:
+
+```bash
+python sqlmap_gui
+```
+
+
+```bash
+builder.bat --exe
+```
+Builds a standalone executable using **PyInstaller**. Configuration parameters are loaded from `config.txt`.
+
+---
+
 ## How to Use
 
  1. Launch the GUI (`python sqlmap_gui`).
