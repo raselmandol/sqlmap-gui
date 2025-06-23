@@ -92,11 +92,7 @@ Run the script with one of the following flags:
 ```bash
 builder.bat --build
 ```
-Builds the project using:
-
-```bash
-pip install -e .
-```
+Builds the project using `pip install -e .`.
 
 ```bash
 builder.bat --run
