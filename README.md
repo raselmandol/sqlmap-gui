@@ -97,12 +97,7 @@ Builds the project using `pip install -e .`.
 ```bash
 builder.bat --run
 ```
-Runs the main application:
-
-```bash
-python sqlmap_gui
-```
-
+Runs the main application using `python sqlmap_gui`.
 
 ```bash
 builder.bat --exe
