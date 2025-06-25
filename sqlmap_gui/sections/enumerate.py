@@ -27,6 +27,9 @@ class EnumerateTab(QWidget):
         self.current_user = QCheckBox("--current-user")
         self.layout.addWidget(self.current_user)
 
+        self.current_db = QCheckBox("--current-db")
+        self.layout.addWidget(self.current_db)
+
         self.sql_shell = QCheckBox("--sql-shell")
         self.layout.addWidget(self.sql_shell)
 
@@ -59,6 +62,9 @@ class EnumerateTab(QWidget):
         if self.current_user.isChecked():
             inputs.append("--current-user")
 
+        if self.current_db.isChecked():
+            inputs.append("--current-db")
+
         if self.sql_shell.isChecked():
             inputs.append("--sql-shell")
 
@@ -74,5 +80,6 @@ class EnumerateTab(QWidget):
         self.enumerate_all.setChecked(False)
         self.dbms_banner.setChecked(False)
         self.current_user.setChecked(False)
+        self.current_db.setChecked(False)
         self.sql_shell.setChecked(False)
         self.custom_query.clear()
