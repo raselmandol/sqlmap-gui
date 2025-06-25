@@ -12,10 +12,10 @@ class EnumerateTab(QWidget):
         self.enumerate_users = QCheckBox("--users")
         self.layout.addWidget(self.enumerate_users)
 
-        self.enumerate_passwords = QCheckBox("Enumerate Passwords")
+        self.enumerate_passwords = QCheckBox("--passwords")
         self.layout.addWidget(self.enumerate_passwords)
 
-        self.enumerate_dbs = QCheckBox("Enumerate Databases")
+        self.enumerate_dbs = QCheckBox("--dbs")
         self.layout.addWidget(self.enumerate_dbs)
 
         self.hostname = QCheckBox("--hostname")
@@ -24,7 +24,7 @@ class EnumerateTab(QWidget):
         self.enumerate_all = QCheckBox("--a")
         self.layout.addWidget(self.enumerate_all)
 
-        self.dbms_banner = QCheckBox("--banner DBMS Banner")
+        self.dbms_banner = QCheckBox("--banner")
         self.layout.addWidget(self.dbms_banner)
 
         self.current_user = QCheckBox("--current-user")
