@@ -9,7 +9,7 @@ class EnumerateTab(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
 
-        self.enumerate_users = QCheckBox("Enumerate Users")
+        self.enumerate_users = QCheckBox("--users")
         self.layout.addWidget(self.enumerate_users)
 
         self.enumerate_passwords = QCheckBox("Enumerate Passwords")
