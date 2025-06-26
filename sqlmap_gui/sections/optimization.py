@@ -27,19 +27,10 @@ class OptimizationTab(QWidget):
         #self.layout.addWidget(QLabel("--threads"))
         self.layout.addWidget(self.threads_m)
 
-
-
-        #self.layout.addLayout(self.upper_layout)
-        #self.setLayout(self.layout)
-        #self.layout = QVBoxLayout()
-
-        # Add more here 
-        # Set the main layout (self.layout) for the current widget (InjectTab)
         self.setLayout(self.layout)
 
     def collectInputs(self):
         
-        #print("collectInputs called for InjectTab")
         inputs = []
 
         threads_m_value = self.threads_m.currentText()
