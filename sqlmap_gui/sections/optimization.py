@@ -6,18 +6,8 @@ class OptimizationTab(QWidget):
         self.initUI()
 
     def initUI(self):
-        # self.setStyleSheet("""
-        #     QWidget {
-        #         background-image: url('../assets/bg_test1.jpg');
-        #         background-repeat: no-repeat;
-        #         background-position: center;
-        #         background-size: cover;
-        #     }
-        # """)        
-        #self.setStyleSheet("background-image: url(bg_test1.jpg);")
-        self.layout = QVBoxLayout()
 
-        #self.upper_layout = QHBoxLayout()
+        self.layout = QVBoxLayout()
 
         self.turn_on_all = QCheckBox("enable all (-o)")
         self.layout.addWidget(self.turn_on_all)
