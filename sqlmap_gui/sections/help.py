@@ -9,8 +9,6 @@ class HelpTab(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
 
-        # self.vertical1 = QHBoxLayout()
-
         self.print_help = QCheckBox("Print help? -h")
         self.layout.addWidget(self.print_help)
 
@@ -23,23 +21,12 @@ class HelpTab(QWidget):
         self.print_version = QCheckBox("Print version: --version")
         self.layout.addWidget(self.print_version)
 
-      #  self.vertical_layout = QVBoxLayout()
-        # self.verbose_label = QLabel("VERBOSE")
-
-
-       # self.vertical1.addLayout(self.vertical_layout)
-
-       # self.vertical1.addLayout(self.vertical1)
-
         self.verbose_t = QComboBox()
         self.verbose_t.addItem("VERBOSE")
         self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
         # self.layout.addWidget(QLabel("VERBOSE"))
         self.layout.addWidget(self.verbose_t)
-        
 
-
-        # self.layout.addLayout(self.vertical1)
         self.setLayout(self.layout)
 
     def collectInputs(self):
@@ -72,8 +59,3 @@ class HelpTab(QWidget):
         self.advance_help.setChecked(False)
         self.print_version.setChecked(False)
         self.verbose_t.setCurrentIndex(0)
-
-        # self.checkbox1.setChecked(False)
-        # self.checkbox2.setChecked(False)
-        # self.checkbox3.setChecked(False)
-        # self.textinput1.clear()
