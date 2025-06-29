@@ -41,8 +41,8 @@ if "%1"=="--exe" (
 )
 
 if "%1"=="--activate" (
-    echo Activating virtual environment: sqlmap_env\Scripts\activate
-    call sqlmap_env\Scripts\activate
+    echo Activating virtual environment: sqlmap_env\Scripts\Activate
+    call sqlmap_env\Scripts\Activate
     goto :eof
 )
 
