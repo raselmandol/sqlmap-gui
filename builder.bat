@@ -51,3 +51,4 @@ echo Usage:
 echo   builder.bat --build         ^(pip install -e .^)
 echo   builder.bat --run           ^(python sqlmap_gui^)
 echo   builder.bat --exe           ^(build executable with pyinstaller^)
+echo   builder.bat --activate      ^(sqlmap_env\Scripts\Activate^)
