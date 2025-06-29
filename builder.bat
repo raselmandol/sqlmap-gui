@@ -40,6 +40,12 @@ if "%1"=="--exe" (
     goto :eof
 )
 
+if "%1"=="--activate" (
+    echo Activating virtual environment: sqlmap_env\Scripts\activate
+    call sqlmap_env\Scripts\activate
+    goto :eof
+)
+
 :: Default help message
 echo Usage:
 echo   builder.bat --build         ^(pip install -e .^)
