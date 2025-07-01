@@ -38,6 +38,11 @@ class TechniquesTab(QWidget):
         self.layout.addWidget(QLabel("--second-url"))
         self.layout.addWidget(self.secondUrl)
 
+        self.dnsDomain = QLineEdit(self)
+        self.dnsDomain.setPlaceholderText("Domain name used for DNS exfiltration attack")
+        self.layout.addWidget(QLabel("--dsn-domain"))
+        self.layout.addWidget(self.dnsDomain)
+
         self.secondReq = QLineEdit(self)
         self.secondReq.setPlaceholderText("--second-req")
         self.layout.addWidget(QLabel("--second-req"))
@@ -67,6 +72,10 @@ class TechniquesTab(QWidget):
         if union_char_value:
             inputs.append(f"--union-char {union_char_value}")
 
+        dnsDomain_value = self.dnsDomain.text()
+        if dnsDomain_value:
+            inputs.append(f"--dns-domain={dnsDomain_value}")
+
         secondUrl_value = self.secondUrl.text()
         if secondUrl_value:
             inputs.append(f"--second-url={secondUrl_value}")
@@ -85,6 +94,7 @@ class TechniquesTab(QWidget):
         self.time_sec.clear()
         self.union_cols.clear()
         self.union_char.clear()
+        self.dnsDomain.clear()
         self.secondUrl.clear()
         self.secondReq.clear()
         self.no_cast.setChecked(False)
