@@ -40,7 +40,7 @@ class TechniquesTab(QWidget):
 
         self.dnsDomain = QLineEdit(self)
         self.dnsDomain.setPlaceholderText("Domain name used for DNS exfiltration attack")
-        self.layout.addWidget(QLabel("--dsn-domain"))
+        self.layout.addWidget(QLabel("--dns-domain"))
         self.layout.addWidget(self.dnsDomain)
 
         self.secondReq = QLineEdit(self)
