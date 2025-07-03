@@ -196,7 +196,6 @@ This project is licensed under the MIT License, [sqlmap license](https://raw.git
 - [ ]  Option to load Sqlmap source/folder selection
 - [ ]  Improve documentation with more examples.
 - [ ]  More tabs/ more options
-- [ ]  Background Process
 - [ ]  JSON import, export
 - [ ]  History Tab
 - [ ]  Optimization tab
