@@ -57,7 +57,7 @@ class EnumerateTab(QWidget):
             inputs.append("--passwords")
 
         if self.privileges.isChecked():
-            inp.append("--privileges")
+            inputs.append("--privileges")
 
         if self.enumerate_dbs.isChecked():
             inputs.append("--dbs")
