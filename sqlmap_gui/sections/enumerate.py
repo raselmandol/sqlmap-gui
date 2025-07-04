@@ -15,6 +15,9 @@ class EnumerateTab(QWidget):
         self.enumerate_passwords = QCheckBox("--passwords")
         self.layout.addWidget(self.enumerate_passwords)
 
+        self.privileges = QCheckBox("--privileges")
+        self.layout.addWidget(self.privileges)
+
         self.enumerate_dbs = QCheckBox("--dbs")
         self.layout.addWidget(self.enumerate_dbs)
 
@@ -53,6 +56,9 @@ class EnumerateTab(QWidget):
         if self.enumerate_passwords.isChecked():
             inputs.append("--passwords")
 
+        if self.privileges.isChecked():
+            inp.append("--privileges")
+
         if self.enumerate_dbs.isChecked():
             inputs.append("--dbs")
 
@@ -82,6 +88,7 @@ class EnumerateTab(QWidget):
     def clearInputs(self):
         self.enumerate_users.setChecked(False)
         self.enumerate_passwords.setChecked(False)
+        self.privileges.setChecked(False)
         self.enumerate_dbs.setChecked(False)
         self.hostname.setChecked(False)
         self.enumerate_all.setChecked(False)
