@@ -25,8 +25,8 @@ class FileTab(QWidget):
         self.layout.addWidget(self.read_file)
 
         self.write_file = QLineEdit(self)
-        self.write_file.setPlaceholderText("File to Write")
-        self.layout.addWidget(QLabel("Write File"))
+        self.write_file.setPlaceholderText("Write a local file on the back-end DBMS file system")
+        self.layout.addWidget(QLabel("--file-write"))
         self.layout.addWidget(self.write_file)
 
         self.file_dest = QLineEdit(self)
