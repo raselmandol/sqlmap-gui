@@ -20,8 +20,8 @@ class FileTab(QWidget):
         self.layout.addWidget(self.download_file)
 
         self.read_file = QLineEdit(self)
-        self.read_file.setPlaceholderText("File to Read")
-        self.layout.addWidget(QLabel("Read File"))
+        self.read_file.setPlaceholderText("Read a file from the back-end DBMS file system")
+        self.layout.addWidget(QLabel("--file-read"))
         self.layout.addWidget(self.read_file)
 
         self.write_file = QLineEdit(self)
