@@ -29,6 +29,11 @@ class FileTab(QWidget):
         self.layout.addWidget(QLabel("Write File"))
         self.layout.addWidget(self.write_file)
 
+        self.file_dest = QLineEdit(self)
+        self.file_dest.setPlaceholderText("--file-dest=FILE..")
+        self.layout.addWidget(QLabel("--file-dest"))
+        self.layout.addWidget(self.file_dest)
+
         self.setLayout(self.layout)
 
     def collectInputs(self):
@@ -46,6 +51,9 @@ class FileTab(QWidget):
         if self.write_file.text():
             inputs.append(f"--file-write={self.write_file.text()}")
 
+        if self.file_dest.text():
+            inputs.append(f"--file-dest={self.file_dest.text()}")
+
         return inputs
 
     def clearInputs(self):
@@ -53,3 +61,4 @@ class FileTab(QWidget):
         self.download_file.clear()
         self.read_file.clear()
         self.write_file.clear()
+        self.file_dest.clear()
