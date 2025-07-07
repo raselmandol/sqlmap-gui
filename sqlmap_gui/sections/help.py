@@ -24,7 +24,6 @@ class HelpTab(QWidget):
         self.verbose_t = QComboBox()
         self.verbose_t.addItem("VERBOSE")
         self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
-        # self.layout.addWidget(QLabel("VERBOSE"))
         self.layout.addWidget(self.verbose_t)
 
         self.setLayout(self.layout)
