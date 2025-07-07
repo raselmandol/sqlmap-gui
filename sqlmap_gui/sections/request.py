@@ -9,7 +9,6 @@ class RequestTab(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
 
-        # Add a combo box for HTTP method
         self.http_method = QComboBox()
         self.http_method.addItem("Select")
         self.http_method.addItems(["GET", "POST", "PUT", "DELETE"])
@@ -31,7 +30,6 @@ class RequestTab(QWidget):
         self.layout.addWidget(QLabel("--auth-type"))
         self.layout.addWidget(self.authType)
 
-        # Add a checkbox for SSL/TLS
         self.ssl_tls = QCheckBox("Use SSL/TLS")
         self.layout.addWidget(self.ssl_tls)
 
@@ -47,13 +45,11 @@ class RequestTab(QWidget):
         self.ignore_proxy = QCheckBox("--ignore-proxy")
         self.layout.addWidget(self.ignore_proxy)
 
-        # Add a line edit for custom headers
         self.custom_headers = QLineEdit(self)
         self.custom_headers.setPlaceholderText("Custom Headers (key:value)")
         self.layout.addWidget(QLabel("Custom Headers"))
         self.layout.addWidget(self.custom_headers)
 
-        # Add a button to add more custom headers
         self.add_header_button = QPushButton("Add Header")
         self.add_header_button.clicked.connect(self.addHeader)
         self.layout.addWidget(self.add_header_button)
