@@ -52,12 +52,10 @@ class InjectTab(QWidget):
         self.layout.addWidget(self.no_escape)
 
         # Add more here 
-        # Set the main layout (self.layout) for the current widget (InjectTab)
         self.setLayout(self.layout)
 
     def collectInputs(self):
         
-        #print("collectInputs called for InjectTab")  print confirmation (console)
         inputs = []
 
         param_filter_value = self.param_filter.currentText()
@@ -92,8 +90,6 @@ class InjectTab(QWidget):
         suffix_value = self.suffix.text()
         if suffix_value:
             inputs.append(f"--suffix={suffix_value}")
-
-        #print(f"InjectTab inputs: {inputs}") # Print collected inputs
         return inputs
 
     def clearInputs(self):
