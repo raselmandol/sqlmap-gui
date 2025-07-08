@@ -14,6 +14,8 @@ from sqlmap_gui.sections.other import OtherTab
 from sqlmap_gui.sections.detection import DetectionTab
 from sqlmap_gui.sections.techniques import TechniquesTab
 from sqlmap_gui.sections.help import HelpTab
+from sqlmap_gui.sections.help_window import HelpWindow
+
 
 class SqlmapGUI(QMainWindow):
     def __init__(self):
@@ -23,6 +25,7 @@ class SqlmapGUI(QMainWindow):
         self.sqlmap_output = ""
         self.initUI()
         self.process = QProcess(self)
+        self.help_window = HelpWindow()
 
     def initUI(self):
         self.setWindowTitle('sqlmap-GUI')
@@ -224,7 +227,10 @@ class SqlmapGUI(QMainWindow):
         QMessageBox.information(self, "About Me", "About me section - will update later.")
 
     def showHelp(self):
-        QMessageBox.information(self, "Help", "working........ will update soon :) ")
+        self.help_window.show()
+        self.help_window.raise_()
+        self.help_window.activateWindow()
+
 
 def main():
     app = QApplication(sys.argv)
