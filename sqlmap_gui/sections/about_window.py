@@ -13,7 +13,7 @@ class AboutWindow(QWidget):
         self.text_area.setReadOnly(True)
         self.text_area.setText(
         "sqlmap-GUI \n\n"
-        "Will update this secdtion soon."
+        "Will update this section soon."
         )
 
         layout.addWidget(self.text_area)
