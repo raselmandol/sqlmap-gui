@@ -27,6 +27,7 @@ class SqlmapGUI(QMainWindow):
         self.initUI()
         self.process = QProcess(self)
         self.help_window = HelpWindow()
+        self.about_window = AboutWindow()
 
     def initUI(self):
         self.setWindowTitle('sqlmap-GUI')
