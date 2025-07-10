@@ -15,6 +15,7 @@ from sqlmap_gui.sections.detection import DetectionTab
 from sqlmap_gui.sections.techniques import TechniquesTab
 from sqlmap_gui.sections.help import HelpTab
 from sqlmap_gui.sections.help_window import HelpWindow
+from sqlmap_gui.sections.about_window import AboutWindow
 
 
 class SqlmapGUI(QMainWindow):
@@ -223,8 +224,13 @@ class SqlmapGUI(QMainWindow):
                     file.write(json.dumps(data, indent=4))
             QMessageBox.information(self, "Save", "Data saved successfully")
 
+    # def showAboutMe(self):
+    #     QMessageBox.information(self, "About Me", "About me section - will update later.")
+
     def showAboutMe(self):
-        QMessageBox.information(self, "About Me", "About me section - will update later.")
+        self.about_window.show()
+        self.about_window.raise_()
+        self.about_window.activateWindow()
 
     def showHelp(self):
         self.help_window.show()
