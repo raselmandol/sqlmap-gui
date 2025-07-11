@@ -239,6 +239,9 @@ class SqlmapGUI(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     window = SqlmapGUI()
+    # Qt bug or rendering issue (File, About, Help menubar) -->
+    # Ensure menus are created before show() is called in main()
+    app.processEvents()
     window.show()
     sys.exit(app.exec_())
 
