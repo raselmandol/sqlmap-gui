@@ -225,9 +225,6 @@ class SqlmapGUI(QMainWindow):
                     file.write(json.dumps(data, indent=4))
             QMessageBox.information(self, "Save", "Data saved successfully")
 
-    # def showAboutMe(self):
-    #     QMessageBox.information(self, "About Me", "About me section - will update later.")
-
     def showAboutMe(self):
         self.about_window.show()
         self.about_window.raise_()
