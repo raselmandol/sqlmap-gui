@@ -124,10 +124,10 @@ class SqlmapGUI(QMainWindow):
         menubar = self.menuBar()
         menubar.setNativeMenuBar(False)
         # File Menu
-        # file_menu = menubar.addMenu('File')
-        # save_action = QAction('Save', self)
-        # save_action.triggered.connect(self.saveToFile)
-        # file_menu.addAction(save_action)
+        file_menu = menubar.addMenu('File')
+        save_action = QAction('Save', self)
+        save_action.triggered.connect(self.saveToFile)
+        file_menu.addAction(save_action)
 
         # About Me Menu
         about_menu = menubar.addMenu('About Me')
@@ -208,21 +208,21 @@ class SqlmapGUI(QMainWindow):
         #self.console_output.clear()
         #self.sqlmap_output = ""
         self.console_output.append("Inputs cleared")
-    # def saveToFile(self):
-    #     options = QFileDialog.Options()
-    #     file_name, _ = QFileDialog.getSaveFileName(self, "Save File", "", "JSON Files (*.json);;Text Files (*.txt)", options=options)
-    #     if file_name:
-    #         data = {
-    #             "url": self.target_url.text(),
-    #             "inputs": self.collected_inputs,
-    #             "output": self.sqlmap_output
-    #         }
-    #         with open(file_name, 'w') as file:
-    #             if file_name.endswith('.json'):
-    #                 json.dump(data, file, indent=4)
-    #             else:
-    #                 file.write(json.dumps(data, indent=4))
-    #         QMessageBox.information(self, "Save", "Data saved successfully")
+    def saveToFile(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getSaveFileName(self, "Save File", "", "JSON Files (*.json);;Text Files (*.txt)", options=options)
+        if file_name:
+            data = {
+                "url": self.target_url.text(),
+                "inputs": self.collected_inputs,
+                "output": self.sqlmap_output
+            }
+            with open(file_name, 'w') as file:
+                if file_name.endswith('.json'):
+                    json.dump(data, file, indent=4)
+                else:
+                    file.write(json.dumps(data, indent=4))
+            QMessageBox.information(self, "Save", "Data saved successfully")
 
 
     def showAboutMe(self):
