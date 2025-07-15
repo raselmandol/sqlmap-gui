@@ -21,6 +21,15 @@ class HelpTab(QWidget):
         self.print_version = QCheckBox("Print version: --version")
         self.layout.addWidget(self.print_version)
 
+        self.base64 = QCheckBox("--base64-safe")
+        self.layout.addWidget(self.base64)
+
+        self.batch = QCheckBox("--batch")
+        self.layout.addWidget(self.batch)
+
+        self.internet = QCheckBox("--check-internet")
+        self.layout.addWidget(self.internet)
+
         self.verbose_t = QComboBox()
         self.verbose_t.addItem("VERBOSE")
         self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
@@ -42,6 +51,15 @@ class HelpTab(QWidget):
 
         if self.print_version.isChecked():
             inputs.append("--version")
+
+        if self.base64.isChecked():
+            inputs.append("--base64-safe")
+
+        if self.batch.isChecked():
+            inputs.append("--batch")
+
+        if self.internet.isChecked():
+            inputs.append("--check-internet ")
         
 
         verbose_t_value = self.verbose_t.currentText()
@@ -57,4 +75,7 @@ class HelpTab(QWidget):
         self.print_help2.setChecked(False)
         self.advance_help.setChecked(False)
         self.print_version.setChecked(False)
+        self.base64.setChecked(False)
+        self.batch.setChecked(False)
+        self.internet.setChecked(False)
         self.verbose_t.setCurrentIndex(0)
