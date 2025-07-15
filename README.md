@@ -193,6 +193,9 @@ This project is licensed under the MIT License, [sqlmap license](https://raw.git
 
 - [ ]  Enhance error handling.
 - [ ]  AI Assistant Panel
+- [ ]  Option Recommender (Auto-Suggest Best SQLMap Flags)
+- [ ]  Auto Tamper Script Selector (Based on Response Patterns)
+- [ ]  Vulnerability Summary Generator
 - [x]  Builder.bat script
 - [ ]  Option to load Sqlmap source/folder selection
 - [ ]  Improve documentation with more examples.
