@@ -90,4 +90,6 @@ class HelpTab(QWidget):
         self.base64.setChecked(False)
         self.batch.setChecked(False)
         self.internet.setChecked(False)
+        self.cleanup.setChecked(False)
+        self.eta.setChecked(False)
         self.verbose_t.setCurrentIndex(0)
