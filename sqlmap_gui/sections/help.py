@@ -30,6 +30,12 @@ class HelpTab(QWidget):
         self.internet = QCheckBox("--check-internet")
         self.layout.addWidget(self.internet)
 
+        self.cleanup = QCheckBox("--cleanup")
+        self.layout.addWidget(self.cleanup)
+
+        self.eta = QCheckBox("--eta")
+        self.layout.addWidget(self.eta)
+
         self.verbose_t = QComboBox()
         self.verbose_t.addItem("VERBOSE")
         self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
@@ -60,7 +66,12 @@ class HelpTab(QWidget):
 
         if self.internet.isChecked():
             inputs.append("--check-internet ")
-        
+
+        if self.cleanup.isChecked():
+            inputs.append("--cleanup")
+
+        if self.eta.isChecked():
+            inputs.append("--eta")        
 
         verbose_t_value = self.verbose_t.currentText()
         if verbose_t_value and verbose_t_value!="VERBOSE":
