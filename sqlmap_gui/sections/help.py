@@ -77,7 +77,8 @@ class HelpTab(QWidget):
         if verbose_t_value and verbose_t_value!="VERBOSE":
             inputs.append(f"-v {self.verbose_t.currentText()}")
 
-
+        #print(f'{inputs}') # Debugging point --> will remove later 
+        # Context ---> AI Summary --> History --> ML Prediction --> Neurosymbolic
         return inputs
 
     def clearInputs(self):
