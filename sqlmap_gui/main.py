@@ -32,25 +32,18 @@ class SqlmapGUI(QMainWindow):
     def initUI(self):
         self.setWindowTitle('sqlmap-GUI')
         self.setGeometry(100, 100, 1050, 400)
-
-        # Set the application icon
         self.setWindowIcon(QIcon('resources/icon.png'))
-
-        # Menu bar
         self.createMenuBar()
 
         widget = QWidget()
         layout = QVBoxLayout()
 
-        # Options section
         options_layout = QVBoxLayout()
         self.target_url = QLineEdit(self)
         self.target_url.setPlaceholderText("Target URL (e.g., \"http://www.site.com/vuln.php?id=1\")")
         options_layout.addWidget(self.target_url)
 
-        # Tabs for different sections
         self.tabs = QTabWidget()
-        # self.inject_tab = InjectTab()
         self.detection_tab = DetectionTab()    
         self.request_tab = RequestTab()
         self.enumerate_tab = EnumerateTab()
@@ -58,46 +51,45 @@ class SqlmapGUI(QMainWindow):
         self.optimization_tab = OptimizationTab()    
         self.other_tab = OtherTab()
 
-        self.help_tab = HelpTab()
+        # Removed HelpTab from QTabWidget
+        # self.help_tab = HelpTab()
+        # self.tabs.addTab(self.help_tab,"Help/General")
 
-        # self.tabs.addTab(self.inject_tab, "Inject(Q)")
-        # self.tabs.addTab(self.detection_tab,"Detection(DD)")
         self.tabs.addTab(self.detection_tab, "Detection(DD)")
         self.tabs.addTab(self.request_tab, "Request(W)")
         self.tabs.addTab(self.enumerate_tab, "Enumerate(E)")
         self.tabs.addTab(self.file_tab, "File(R)")
         self.tabs.addTab(self.optimization_tab, "Optimization(OO)")
         self.tabs.addTab(self.other_tab, "Other(O)")
-        self.tabs.addTab(self.help_tab,"Help/General")
 
         layout.addLayout(options_layout)
         layout.addWidget(self.tabs)
 
-
-        # Creating a splitter to make sections resizable
         self.splitter = QSplitter(Qt.Horizontal, self)
 
-        # InjectTab as a QDockWidget
         self.inject_tab = InjectTab()
-        # self.inject_tab.setStyleSheet("background: black; color: white;")
         self.inject_dock = QDockWidget("Inject(Q)", self)
         self.inject_dock.setWidget(self.inject_tab)
-        self.inject_dock.setFloating(False)  # Default to docked
+        self.inject_dock.setFloating(False)
         self.inject_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
-
         self.addDockWidget(Qt.LeftDockWidgetArea, self.inject_dock)
-
-
 
         self.techniques_tab = TechniquesTab()
         self.techniques_dock = QDockWidget("Techniques(T)", self)
         self.techniques_dock.setWidget(self.techniques_tab)
-        self.techniques_dock.setFloating(False)  # Default to docked
+        self.techniques_dock.setFloating(False)
         self.techniques_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable)
-
         self.addDockWidget(Qt.LeftDockWidgetArea, self.techniques_dock)
 
-        # Buttons
+        # HelpTab as a dock widget
+        self.help_tab = HelpTab()
+        self.help_dock = QDockWidget("Help/General", self)
+        self.help_dock.setWidget(self.help_tab)
+        self.help_dock.setFloating(False)
+        self.help_dock.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable | QDockWidget.DockWidgetClosable)
+        self.addDockWidget(Qt.RightDockWidgetArea, self.help_dock)
+        # -------------------------------------
+
         button_layout = QHBoxLayout()
         self.collect_button = QPushButton("A.collect(A)")
         self.collect_button.clicked.connect(self.collectInputs)
@@ -113,7 +105,6 @@ class SqlmapGUI(QMainWindow):
 
         layout.addLayout(button_layout)
 
-        # Console output
         self.console_output = QTextEdit(self)
         layout.addWidget(self.console_output)
 
@@ -159,7 +150,7 @@ class SqlmapGUI(QMainWindow):
         inputs.extend(self.optimization_tab.collectInputs())
         inputs.extend(self.techniques_tab.collectInputs())
         # inputs.extend(self.other_tab.collectInputs())
-        inputs.extend(self.help_tab.collectInputs())
+        inputs.extend(self.help_tab.collectInputs())  # Still collect from help_tab
 
         self.collected_inputs = " ".join(inputs)
         self.console_output.append(f"Collected inputs: {self.collected_inputs}")
@@ -205,9 +196,8 @@ class SqlmapGUI(QMainWindow):
         self.detection_tab.clearInputs()
         # self.other_tab.clearInputs()
         self.help_tab.clearInputs()
-        #self.console_output.clear()
-        #self.sqlmap_output = ""
         self.console_output.append("Inputs cleared")
+
     def saveToFile(self):
         options = QFileDialog.Options()
         file_name, _ = QFileDialog.getSaveFileName(self, "Save File", "", "JSON Files (*.json);;Text Files (*.txt)", options=options)
@@ -231,9 +221,9 @@ class SqlmapGUI(QMainWindow):
         self.about_window.activateWindow()
 
     def showHelp(self):
-        self.help_window.show()
-        self.help_window.raise_()
-        self.help_window.activateWindow()
+        self.help_dock.show()
+        self.help_dock.raise_()
+        self.help_dock.activateWindow()
 
 
 def main():
