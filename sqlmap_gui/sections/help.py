@@ -36,6 +36,12 @@ class HelpTab(QWidget):
         self.eta = QCheckBox("--eta")
         self.layout.addWidget(self.eta)
 
+        self.flushSession = QCheckBox("--flush-session")
+        self.layout.addWidget(self.flushSession)
+
+        self.forms = QCheckBox("--forms")
+        self.layout.addWidget(self.forms)
+
         self.verbose_t = QComboBox()
         self.verbose_t.addItem("VERBOSE")
         self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
@@ -71,7 +77,13 @@ class HelpTab(QWidget):
             inputs.append("--cleanup")
 
         if self.eta.isChecked():
-            inputs.append("--eta")        
+            inputs.append("--eta")  
+
+        if self.flushSession.isChecked():
+            inputs.append("--flush-session")
+
+        if self.forms.isChecked():
+            inputs.append("--forms")      
 
         verbose_t_value = self.verbose_t.currentText()
         if verbose_t_value and verbose_t_value!="VERBOSE":
@@ -92,4 +104,6 @@ class HelpTab(QWidget):
         self.internet.setChecked(False)
         self.cleanup.setChecked(False)
         self.eta.setChecked(False)
+        self.flushSession.setChecked(False)
+        self.forms.setChecked(False)
         self.verbose_t.setCurrentIndex(0)
