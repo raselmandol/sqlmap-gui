@@ -47,6 +47,16 @@ class HelpTab(QWidget):
         self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
         self.layout.addWidget(self.verbose_t)
 
+        self.answers = QLineEdit(self)
+        self.answers.setPlaceholderText('ANSWERS (e.g. "quit=N,follow=N")')
+        self.layout.addWidget(QLabel('--answers=ANSWERS'))
+        self.layout.addWidget(self.answers)
+
+        self.base64_param = QLineEdit(self)
+        self.base64_param.setPlaceholderText('BASE64 parameter(s) (comma separated)')
+        self.layout.addWidget(QLabel('--base64=BASE64PARAM'))
+        self.layout.addWidget(self.base64_param)
+
         self.setLayout(self.layout)
 
     def collectInputs(self):
@@ -89,6 +99,14 @@ class HelpTab(QWidget):
         if verbose_t_value and verbose_t_value!="VERBOSE":
             inputs.append(f"-v {self.verbose_t.currentText()}")
 
+        answers_value = self.answers.text().strip()
+        if answers_value:
+            inputs.append(f"--answers={answers_value}")
+
+        base64_param_value = self.base64_param.text().strip()
+        if base64_param_value:
+            inputs.append(f"--base64={base64_param_value}")
+
         #print(f'{inputs}') # Debugging point --> will remove later 
         # Context ---> AI Summary --> History --> ML Prediction --> Neurosymbolic
         return inputs
@@ -107,3 +125,5 @@ class HelpTab(QWidget):
         self.flushSession.setChecked(False)
         self.forms.setChecked(False)
         self.verbose_t.setCurrentIndex(0)
+        self.answers.clear()
+        self.base64_param.clear()
