@@ -101,11 +101,11 @@ class SqlmapGUI(QMainWindow):
 
         # Buttons
         button_layout = QHBoxLayout()
-        self.collect_button = QPushButton("A.collect(A)")
+        self.collect_button = QPushButton("Collect(A)")
         self.collect_button.clicked.connect(self.collectInputs)
         button_layout.addWidget(self.collect_button)
 
-        self.run_button = QPushButton("B.run(F)")
+        self.run_button = QPushButton("Run(F)")
         self.run_button.clicked.connect(self.runSqlmap)
         button_layout.addWidget(self.run_button)
 
