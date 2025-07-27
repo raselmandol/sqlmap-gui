@@ -16,6 +16,7 @@ from sqlmap_gui.sections.techniques import TechniquesTab
 from sqlmap_gui.sections.help import HelpTab
 from sqlmap_gui.sections.help_window import HelpWindow
 from sqlmap_gui.sections.about_window import AboutWindow
+from sqlmap_gui.sections.terminal import TerminalWidget
 
 
 class SqlmapGUI(QMainWindow):
@@ -116,8 +117,10 @@ class SqlmapGUI(QMainWindow):
         layout.addLayout(button_layout)
 
         # Console output
-        self.console_output = QTextEdit(self)
-        layout.addWidget(self.console_output)
+        # self.console_output = QTextEdit(self)
+        # layout.addWidget(self.console_output)
+        self.terminal = TerminalWidget(self)
+        layout.addWidget(self.terminal)
 
         widget.setLayout(layout)
         self.setCentralWidget(widget)
@@ -165,17 +168,17 @@ class SqlmapGUI(QMainWindow):
 
 
         self.collected_inputs = " ".join(inputs)
-        self.console_output.append(f"Collected inputs: {self.collected_inputs}")
+        self.terminal.write(f"Collected inputs: {self.collected_inputs}\n")
 
     def runSqlmap(self):
         if not self.collected_inputs:
-            self.console_output.append("No inputs collected. Please collect inputs first.")
+            self.terminal.write("No inputs collected. Please collect inputs first.\n")
             return
 
-        self.console_output.append("Running sqlmap...")
+        self.terminal.write("Running sqlmap...\n")
         # Set the sqlmap.py location 
         command = f"python sqlmap/sqlmap.py {self.collected_inputs}"
-        self.console_output.append(f"Command: {command}")
+        self.terminal.write(f"Command: {command}\n")
 
         self.process.start(command)
         self.process.readyReadStandardOutput.connect(self.handle_stdout)
@@ -186,16 +189,16 @@ class SqlmapGUI(QMainWindow):
         data = self.process.readAllStandardOutput()
         output = bytes(data).decode("utf8")
         self.sqlmap_output += output
-        self.console_output.append(output)
+        self.terminal.write(output)
 
     def handle_stderr(self):
         data = self.process.readAllStandardError()
         error = bytes(data).decode("utf8")
         self.sqlmap_output += error
-        self.console_output.append(error)
+        self.terminal.write(error)
 
     def process_finished(self):
-        self.console_output.append("sqlmap finished execution")
+        self.terminal.write("sqlmap finished execution\n")
 
     def clearInputs(self):
         self.target_url.clear()
@@ -211,7 +214,7 @@ class SqlmapGUI(QMainWindow):
 
         #self.console_output.clear()
         #self.sqlmap_output = ""
-        self.console_output.append("Inputs cleared")
+        self.terminal.write("Inputs cleared\n")
     def saveToFile(self):
         options = QFileDialog.Options()
         file_name, _ = QFileDialog.getSaveFileName(self, "Save File", "", "JSON Files (*.json);;Text Files (*.txt)", options=options)
