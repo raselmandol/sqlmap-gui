@@ -245,6 +245,7 @@ class SqlmapGUI(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    app.setStyleSheet("QWidget { background-color: #f0f1ec; }")
     window = SqlmapGUI()
     # Qt bug or rendering issue (File, About, Help menubar) -->
     # Ensure menus are created before show() is called in main()
