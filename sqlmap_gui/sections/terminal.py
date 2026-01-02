@@ -1,3 +1,4 @@
+import sys
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QLineEdit
 from PyQt5.QtCore import QProcess, Qt
 
