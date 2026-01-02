@@ -7,7 +7,7 @@
 
 ---
 
-[![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](#) [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](#) [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](#)
+[![PyPI version](https://img.shields.io/pypi/v/sqlmap-gui)](https://pypi.org/project/sqlmap-gui/) [![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](#) [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](#) [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](#)
 
 
 ## Features
@@ -29,6 +29,14 @@
 ---
 
 ## Installation
+
+### Recommended (PyPI)
+
+```bash
+pip install sqlmap-gui
+```
+
+### From Source
 
 Follow these steps to set up the project locally:
 
