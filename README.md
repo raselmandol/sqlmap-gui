@@ -22,9 +22,9 @@
 
 ## Screenshots
 
-![GUI Preview](screenshots/1_1.png)
+![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/1_1.png)
 
-![GUI Preview](screenshots/1_3.png)
+![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/1_3.png)
 
 ---
 
