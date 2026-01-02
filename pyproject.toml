@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sqlmap-gui"
+version = "1.1.0"
+description = "PyQt5 desktop GUI for running sqlmap with a friendly interface."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Md. Rasel Mandol" }
+]
+keywords = ["sqlmap", "gui", "pyqt", "security", "pentest"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: User Interfaces"
+]
+dependencies = [
+    "PyQt5>=5.15"
+]
+
+[project.scripts]
+sqlmap-gui = "sqlmap_gui.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["sqlmap_gui", "sqlmap_gui.*"]
+
+[tool.setuptools.package-data]
+sqlmap_gui = ["resources/icon.png"]
