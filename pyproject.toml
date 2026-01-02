@@ -8,7 +8,6 @@ version = "1.1.0"
 description = "PyQt5 desktop GUI for running sqlmap with a friendly interface."
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "MIT License" }
 authors = [
     { name = "Md. Rasel Mandol" }
 ]
@@ -38,7 +37,6 @@ sqlmap-gui = "sqlmap_gui.main:main"
 
 [tool.setuptools]
 include-package-data = true
-license-files = ["LICENSE"]
 
 [tool.setuptools.packages.find]
 include = ["sqlmap_gui", "sqlmap_gui.*"]
