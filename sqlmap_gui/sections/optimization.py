@@ -21,10 +21,15 @@ class OptimizationTab(QWidget):
         self.null_connection = QCheckBox("--null-connection")
         self.layout.addWidget(self.null_connection)
 
-        self.threads_m = QComboBox()
+        threads_layout = QHBoxLayout()
+        threads_label = QLabel("--threads")
+        threads_layout.addWidget(threads_label)
+
+        self.threads_m = QComboBox(self)
         self.threads_m.addItem("--threads")
         self.threads_m.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
-        self.layout.addWidget(self.threads_m)
+        threads_layout.addWidget(self.threads_m)
+        self.layout.addLayout(threads_layout)
 
         self.setLayout(self.layout)
 
