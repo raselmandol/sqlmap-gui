@@ -81,6 +81,7 @@ if you want to build an `.exe`:
    pip install pyinstaller
    ```
 
+> [!Note]
 > **Note:** Already added in `requirements.txt`. (If you want to ignore it, make sure to remove it from `requirements.txt`.)
 
 
@@ -112,7 +113,8 @@ builder.bat --exe
 ```
 Builds a standalone executable using **PyInstaller**. Configuration parameters are loaded from `config.txt`.
 
-> **Note:** To use `--activate`, run `./builder.ps1 --activate` instead of `./builder.bat --activate`. The PowerShell script (`builder.ps1`) is more reliable and effective in PowerShell environments, which are commonly used as the default terminal in most IDEs (such as Visual Studio Code).
+> [!Note]
+> To use `--activate`, run `./builder.ps1 --activate` instead of `./builder.bat --activate`. The PowerShell script (`builder.ps1`) is more reliable and effective in PowerShell environments, which are commonly used as the default terminal in most IDEs (such as Visual Studio Code).
 
 ---
 
