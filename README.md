@@ -7,7 +7,7 @@
 
 ---
 
-[![PyPI version](https://img.shields.io/pypi/v/sqlmap-gui)](https://pypi.org/project/sqlmap-gui/) [![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](#) [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](#) [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](#)
+[![PyPI version](https://img.shields.io/pypi/v/sqlmap-gui)](https://pypi.org/project/sqlmap-gui/) [![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](#) [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](#) [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](#) [![CI/CD](https://github.com/raselmandol/sqlmap-gui/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/raselmandol/sqlmap-gui/actions/workflows/ci-cd.yml)
 
 
 ## Features
