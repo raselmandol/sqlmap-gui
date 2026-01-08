@@ -1,6 +1,6 @@
 import sys
 import json
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QTextEdit, QTabWidget, QAction, QFileDialog, QMessageBox, QDockWidget, QSplitter
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QTextEdit, QTabWidget, QAction, QFileDialog, QMessageBox, QDockWidget, QSplitter, QMenuBar
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QProcess
 from PyQt5.QtGui import QIcon
@@ -41,6 +41,7 @@ class SqlmapGUI(QMainWindow):
         self.createMenuBar()
 
         widget = QWidget()
+        widget.setObjectName("central-area")
         layout = QVBoxLayout()
 
         # Options section
@@ -126,22 +127,53 @@ class SqlmapGUI(QMainWindow):
         self.setCentralWidget(widget)
 
     def createMenuBar(self):
-        menubar = self.menuBar()
-        menubar.setNativeMenuBar(False)
+        self.menubar = QMenuBar(self)
+        self.menubar.setNativeMenuBar(False)
+        self.menubar.setStyleSheet(
+            """
+            QMenuBar {
+                background-color: #f0f1ec;
+                color: #1f1f1f;
+                font-weight: 500;
+            }
+            QMenuBar::item {
+                padding: 4px 12px;
+                background: transparent;
+                color: #1f1f1f;
+            }
+            QMenuBar::item:selected {
+                background-color: #d6d8d1;
+                border-radius: 4px;
+            }
+            QMenu {
+                background-color: #f7f8f3;
+                color: #1f1f1f;
+                border: 1px solid #cfd2c5;
+            }
+            QMenu::item {
+                padding: 6px 18px;
+                color: #1f1f1f;
+            }
+            QMenu::item:selected {
+                background-color: #d6d8d1;
+            }
+            """
+        )
+        self.setMenuBar(self.menubar)
         # File Menu
-        file_menu = menubar.addMenu('File')
+        file_menu = self.menubar.addMenu('File')
         save_action = QAction('Save', self)
         save_action.triggered.connect(self.saveToFile)
         file_menu.addAction(save_action)
 
         # About Me Menu
-        about_menu = menubar.addMenu('About Me')
+        about_menu = self.menubar.addMenu('About Me')
         about_action = QAction('About Me', self)
         about_action.triggered.connect(self.showAboutMe)
         about_menu.addAction(about_action)
 
         # Help Menu
-        help_menu = menubar.addMenu('Help')
+        help_menu = self.menubar.addMenu('Help')
         help_action = QAction('Help', self)
         help_action.triggered.connect(self.showHelp)
         help_menu.addAction(help_action)
@@ -245,7 +277,16 @@ class SqlmapGUI(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    app.setStyleSheet("QWidget { background-color: #f0f1ec; }")
+    app.setStyleSheet(
+        """
+        QMainWindow {
+            background-color: #f0f1ec;
+        }
+        QWidget#central-area {
+            background-color: #f0f1ec;
+        }
+        """
+    )
     window = SqlmapGUI()
     # Qt bug or rendering issue (File, About, Help menubar) -->
     # Ensure menus are created before show() is called in main()
