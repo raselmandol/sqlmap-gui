@@ -6,3 +6,6 @@ __pycache__/
 sqlmap_gui/__pycache__/
 sqlmap_gui/sections/__pycache__/
 sqlmap-gui.spec
+
+# sqlmap (download))
+sqlmap/
