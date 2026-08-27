@@ -1,0 +1,3 @@
+include README.md
+include LICENSE
+recursive-include sqlmap_gui/resources *.png *.svg
