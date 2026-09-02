@@ -14,8 +14,8 @@ if "%1"=="--build" (
 )
 
 if "%1"=="--run" (
-    echo Running: python sqlmap_gui
-    python sqlmap_gui
+    echo Running: sqlmap-gui
+    sqlmap-gui
     goto :eof
 )
 
@@ -49,6 +49,6 @@ if "%1"=="--activate" (
 :: Default help message
 echo Usage:
 echo   builder.bat --build         ^(pip install -e .^)
-echo   builder.bat --run           ^(python sqlmap_gui^)
+echo   builder.bat --run           ^(sqlmap-gui^)
 echo   builder.bat --exe           ^(build executable with pyinstaller^)
 echo   builder.bat --activate      ^(sqlmap_env\Scripts\Activate^)
