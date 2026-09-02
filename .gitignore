@@ -1,10 +1,10 @@
 build/
 dist/
 sqlmap_env/
-sqlmap_gui.egg-info/
+# Setuptools normalises the dist name to sqlmap_gui.egg-info; match any name.
+*.egg-info/
+# Recursive on its own -- covers every package subdirectory.
 __pycache__/
-sqlmap_gui/__pycache__/
-sqlmap_gui/sections/__pycache__/
 sqlmap-gui.spec
 
 # sqlmap (download))
