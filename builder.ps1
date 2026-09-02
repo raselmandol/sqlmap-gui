@@ -8,8 +8,8 @@ switch ($arg) {
         pip install -e .
     }
     "--run" {
-        Write-Host "Running: python sqlmap_gui"
-        python sqlmap_gui
+        Write-Host "Running: sqlmap-gui"
+        sqlmap-gui
     }
     "--activate" {
         Write-Host "Activating virtual environment"
@@ -23,7 +23,7 @@ switch ($arg) {
     Default {
         Write-Host "Usage:"
         Write-Host "  builder.ps1 --build      (pip install -e .)"
-        Write-Host "  builder.ps1 --run        (python sqlmap_gui)"
+        Write-Host "  builder.ps1 --run        (sqlmap-gui)"
         Write-Host "  builder.ps1 --activate   (activate virtualenv)"
         Write-Host "  builder.ps1 --exe        (build executable)"
     }
