@@ -1,64 +1,44 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QCheckBox, QLineEdit
+from sqlmap_gui.sections.widgets import OptionTab
 
-class FileTab(QWidget):
+
+class FileTab(OptionTab):
     def __init__(self):
         super().__init__()
+        self._build()
 
-        self.initUI()
+    def _build(self):
+        files = self.add_group("File system access", columns=1)
+        self.path(files, "Read file from back-end (--file-read)", "--file-read",
+                  name_filter="All Files (*.*)",
+                  placeholder="e.g. /etc/passwd or C:\\boot.ini")
+        self.path(files, "Write local file to back-end (--file-write)",
+                  "--file-write", name_filter="All Files (*.*)",
+                  placeholder="local file to upload")
+        self.value(files, "Destination path on server (--file-dest)",
+                   "--file-dest", "e.g. /var/www/html/shell.php")
+        self.flag(files, "Brute-force common files (--common-files)",
+                  "--common-files")
 
-    def initUI(self):
-        self.layout = QVBoxLayout()
+        os_takeover = self.add_group("OS takeover", columns=2)
+        self.value(os_takeover, "Execute OS command (--os-cmd)", "--os-cmd",
+                   'e.g. "whoami"')
+        self.flag(os_takeover, "Interactive OS shell (--os-shell)", "--os-shell")
+        self.flag(os_takeover, "Out-of-band stateful shell (--os-pwn)",
+                  "--os-pwn", tooltip="Requires Meterpreter/payload setup")
+        self.flag(os_takeover, "SMB relay attack (--os-smbrelay)", "--os-smbrelay")
+        self.flag(os_takeover, "BOF exploit attempt (--os-bof)", "--os-bof")
+        self.flag(os_takeover, "Escalate to DBA root privileges (--priv-esc)",
+                  "--priv-esc")
 
-        self.upload_file = QLineEdit(self)
-        self.upload_file.setPlaceholderText("File to Upload")
-        self.layout.addWidget(QLabel("Upload File"))
-        self.layout.addWidget(self.upload_file)
+        metasploit = self.add_group("Metasploit Framework bridge", columns=2)
+        self.path(metasploit, "Local MSF path (--msf-path)", "--msf-path",
+                  mode="dir",
+                  tooltip="Folder where Metasploit Framework is installed")
+        self.value(metasploit, "Temporary files path on server (--tmp-path)",
+                   "--tmp-path", "e.g. /tmp")
 
-        self.download_file = QLineEdit(self)
-        self.download_file.setPlaceholderText("File to Download")
-        self.layout.addWidget(QLabel("Download File"))
-        self.layout.addWidget(self.download_file)
-
-        self.read_file = QLineEdit(self)
-        self.read_file.setPlaceholderText("Read a file from the back-end DBMS file system")
-        self.layout.addWidget(QLabel("--file-read"))
-        self.layout.addWidget(self.read_file)
-
-        self.write_file = QLineEdit(self)
-        self.write_file.setPlaceholderText("Write a local file on the back-end DBMS file system")
-        self.layout.addWidget(QLabel("--file-write"))
-        self.layout.addWidget(self.write_file)
-
-        self.file_dest = QLineEdit(self)
-        self.file_dest.setPlaceholderText("--file-dest=FILE..")
-        self.layout.addWidget(QLabel("--file-dest"))
-        self.layout.addWidget(self.file_dest)
-
-        self.setLayout(self.layout)
-
-    def collectInputs(self):
-        inputs = []
-
-        if self.upload_file.text():
-            inputs.append(f"--file-write={self.upload_file.text()}")
-
-        if self.download_file.text():
-            inputs.append(f"--file-read={self.download_file.text()}")
-
-        if self.read_file.text():
-            inputs.append(f"--file-read={self.read_file.text()}")
-
-        if self.write_file.text():
-            inputs.append(f"--file-write={self.write_file.text()}")
-
-        if self.file_dest.text():
-            inputs.append(f"--file-dest={self.file_dest.text()}")
-
-        return inputs
-
-    def clearInputs(self):
-        self.upload_file.clear()
-        self.download_file.clear()
-        self.read_file.clear()
-        self.write_file.clear()
-        self.file_dest.clear()
+        udf = self.add_group("UDF injection (MySQL/PostgreSQL)", columns=1)
+        self.flag(udf, "Inject custom user-defined functions (--udf-inject)",
+                  "--udf-inject")
+        self.path(udf, "Shared library to compile/upload (--shared-lib)",
+                  "--shared-lib")
