@@ -1,5 +1,5 @@
-"""Environment helpers: detect/download Python and sqlmap, OS information."""
-
+import importlib
+import importlib.metadata as importlib_metadata
 import os
 import re
 import platform
@@ -57,6 +57,26 @@ def _stored_sqlmap() -> str:
     return path if path and Path(path).is_file() else ""
 
 
+def console_interpreter(exe: str) -> str:
+    """ 
+    !important: Please read this carefully to understand more about the embedded terminal concept.
+    I am not sure if this is the best way to handle this, but it works for now (suggest improvements using pull requests).
+    The ``sqlmap-gui`` launcher is a gui-script, so on Windows ``sys.executable``
+    is ``pythonw.exe`` -- an interpreter with no stdout. sqlmap and pip are run
+    through the embedded terminal and must print there, so swap in ``python.exe``
+    whenever it sits beside the windowed build.
+    """
+    if not exe:
+        return ""
+    path = Path(exe)
+    console_stem = {"pythonw": "python", "pyw": "py"}.get(path.stem.lower())
+    if console_stem:
+        console = path.with_name(console_stem + path.suffix)
+        if console.is_file():
+            return str(console)
+    return exe
+
+
 def default_python() -> str:
     """Prefer the interpreter running this GUI, then configured, then PATH."""
     from . import settings as app_settings
@@ -65,7 +85,7 @@ def default_python() -> str:
     if stored and Path(stored).is_file():
         return stored
 
-    exe = sys.executable or ""
+    exe = console_interpreter(sys.executable or "")
     if exe and Path(exe).is_file():
         return exe
 
@@ -95,7 +115,7 @@ def probe_python_version(python_exe: str) -> str:
 
 
 def sys_executable_safe() -> str:
-    exe = getattr(sys, "executable", "") or ""
+    exe = console_interpreter(getattr(sys, "executable", "") or "")
     return exe if exe and Path(exe).is_file() else ""
 
 
@@ -174,6 +194,72 @@ def suggested_python_install_command() -> str:
     if shutil.which("zypper"):
         return "sudo zypper install python3"
     return PYTHON_DOWNLOAD_PAGE
+
+
+_PACKAGE_SPECS = (
+    {
+        "dist": "PyQt5",
+        "import_name": "PyQt5",
+        "required": True,
+        "platforms": None,
+        "purpose": "Core graphical toolkit that renders the whole interface.",
+    },
+    {
+        "dist": "pywinpty",
+        "import_name": "winpty",
+        "required": False,
+        "platforms": ("Windows",),
+        "purpose": "Enables a fully interactive embedded terminal on Windows.",
+    },
+)
+
+
+def _package_installed_version(spec: dict) -> str:
+    """Return the installed version string, or '' when not installed."""
+    try:
+        return importlib_metadata.version(spec["dist"])
+    except importlib_metadata.PackageNotFoundError:
+        pass
+    except Exception:
+        return ""
+    # Some environments expose the module without dist metadata; fall back
+    # to an import probe so we still report it as present.
+    try:
+        importlib.import_module(spec["import_name"])
+        return "installed"
+    except Exception:
+        return ""
+
+
+def required_packages() -> list:
+    """Return dependency specs applicable to this OS, with live status.
+
+    Each dict carries: dist, import_name, required, purpose, installed (bool)
+    and version (str, '' when missing).
+    """
+    system = os_name()
+    result = []
+    for spec in _PACKAGE_SPECS:
+        platforms = spec.get("platforms")
+        if platforms and system not in platforms:
+            continue
+        version = _package_installed_version(spec)
+        result.append({
+            "dist": spec["dist"],
+            "import_name": spec["import_name"],
+            "required": spec["required"],
+            "purpose": spec["purpose"],
+            "installed": bool(version),
+            "version": version if version and version != "installed" else "",
+        })
+    return result
+
+
+def pip_install_command(dist: str, python_exe: str = "") -> str:
+    """Best-effort ``python -m pip install`` command for one distribution."""
+    exe = python_exe or sys_executable_safe() or default_python() or "python"
+    quoted = f'"{exe}"' if " " in exe else exe
+    return f"{quoted} -m pip install --upgrade {dist}"
 
 
 def download_sqlmap(dest_dir: str, progress=None) -> str:
