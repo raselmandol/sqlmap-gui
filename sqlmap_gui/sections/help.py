@@ -1,129 +1,74 @@
-from PyQt5.QtWidgets import QWidget, QApplication, QVBoxLayout, QLabel, QCheckBox, QLineEdit,QHBoxLayout,QComboBox,QFileDialog
+from sqlmap_gui.sections.widgets import OptionTab
 
-class HelpTab(QWidget):
+
+class HelpTab(OptionTab):
+    """General/misc options tab (class name kept for import compatibility)."""
+
     def __init__(self):
         super().__init__()
+        self._build()
 
-        self.initUI()
+    def _build(self):
+        behaviour = self.add_group("Run behaviour", columns=3)
+        self.flag(behaviour, "Batch: never ask for input (--batch)", "--batch",
+                  tooltip="Use default answers for every interactive prompt")
+        self.flag(behaviour, "Check internet connectivity (--check-internet)",
+                  "--check-internet")
+        self.flag(behaviour, "Show progress + ETA (--eta)", "--eta")
+        self.flag(behaviour, "Test HTML forms (--forms)", "--forms")
+        self.number(behaviour, "Crawl website to depth (--crawl)", "--crawl",
+                    low=0, high=100,
+                    tooltip="Depth 1 crawls the target URL only; 0 = off")
+        self.value(behaviour, "Regex excluding pages from crawl "
+                              "(--crawl-exclude)", "--crawl-exclude")
 
-    def initUI(self):
-        self.layout = QVBoxLayout()
+        session = self.add_group("Session & logging", columns=2)
+        self.path(session, "Retrieve session from file (-s)", "-s",
+                  name_filter="Session files (*.sqlite);;All Files (*)")
+        self.path(session, "Log all HTTP traffic to file (-t)", "-t",
+                  name_filter="Traffic log (*.log *.txt);;All Files (*)")
+        self.flag(session, "Flush session for target (--flush-session)",
+                  "--flush-session")
+        self.flag(session, "Use cached results only (--fresh-queries)",
+                  "--fresh-queries")
+        self.choice(session, "Verbosity (-v)", "-v",
+                    [("0 - silent", "0"), ("1 - info", "1"),
+                     ("2 - debug", "2"), ("3 - payloads", "3"),
+                     ("4 - http", "4"), ("5 - queries", "5"),
+                     ("6 - everything", "6")])
 
-        self.print_help = QCheckBox("Print help? -h")
-        self.layout.addWidget(self.print_help)
+        output = self.add_group("Output & encoding", columns=2)
+        self.path(output, "Custom output directory (--output-dir)",
+                  "--output-dir", mode="dir")
+        self.value(output, "Character set (--charset)", "--charset",
+                   "e.g. GBK / utf-8")
+        self.value(output, "Scope regex to filter targets (--scope)", "--scope",
+                   "e.g. (www)?\\.target\\..*")
+        self.flag(output, "Parse & show DBMS errors (--parse-errors)",
+                  "--parse-errors")
+        self.flag(output, "Hex-dump retrieved data (--hex)", "--hex")
 
-        self.print_help2 = QCheckBox("basic help: -help")
-        self.layout.addWidget(self.print_help2)
+        info = self.add_group("Info & housekeeping", columns=3)
+        self.flag(info, "Print version and exit (--version)", "--version")
+        self.flag(info, "Update sqlmap from git (--update)", "--update")
+        self.flag(info, "Safely remove all content (--purge)", "--purge")
+        self.flag(info, "Clean up DBMS artifacts (--cleanup)", "--cleanup")
+        self.flag(info, "Disable console coloring (--disable-coloring)",
+                  "--disable-coloring")
+        self.flag(info, "Work in offline mode (--offline)", "--offline")
+        self.flag(info, "List available tamper scripts (--list-tampers)",
+                  "--list-tampers")
+        self.flag(info, "Simple wizard interface (--wizard)", "--wizard")
+        self.flag(info, "Beep when injection found (--beep)", "--beep")
+        self.flag(info, "Base64-safe processing (--base64-safe)",
+                  "--base64-safe")
+        self.flag(info, "Check for missing dependencies (--dependencies)",
+                  "--dependencies")
 
-        self.advance_help  = QCheckBox("Advance help: -hh")
-        self.layout.addWidget(self.advance_help)
-
-        self.print_version = QCheckBox("Print version: --version")
-        self.layout.addWidget(self.print_version)
-
-        self.base64 = QCheckBox("--base64-safe")
-        self.layout.addWidget(self.base64)
-
-        self.batch = QCheckBox("--batch")
-        self.layout.addWidget(self.batch)
-
-        self.internet = QCheckBox("--check-internet")
-        self.layout.addWidget(self.internet)
-
-        self.cleanup = QCheckBox("--cleanup")
-        self.layout.addWidget(self.cleanup)
-
-        self.eta = QCheckBox("--eta")
-        self.layout.addWidget(self.eta)
-
-        self.flushSession = QCheckBox("--flush-session")
-        self.layout.addWidget(self.flushSession)
-
-        self.forms = QCheckBox("--forms")
-        self.layout.addWidget(self.forms)
-
-        self.verbose_t = QComboBox()
-        self.verbose_t.addItem("VERBOSE")
-        self.verbose_t.addItems(["0", "1", "2", "3", "4", "5", "6"])
-        self.layout.addWidget(self.verbose_t)
-
-        self.answers = QLineEdit(self)
-        self.answers.setPlaceholderText('ANSWERS (e.g. "quit=N,follow=N")')
-        self.layout.addWidget(QLabel('--answers=ANSWERS'))
-        self.layout.addWidget(self.answers)
-
-        self.base64_param = QLineEdit(self)
-        self.base64_param.setPlaceholderText('BASE64 parameter(s) (comma separated)')
-        self.layout.addWidget(QLabel('--base64=BASE64PARAM'))
-        self.layout.addWidget(self.base64_param)
-
-        self.setLayout(self.layout)
-
-    def collectInputs(self):
-        inputs = []
-
-        if self.print_help.isChecked():
-            inputs.append("-h")
-
-        if self.print_help2.isChecked():
-            inputs.append("-help")
-
-        if self.advance_help.isChecked():
-            inputs.append("-hh")
-
-        if self.print_version.isChecked():
-            inputs.append("--version")
-
-        if self.base64.isChecked():
-            inputs.append("--base64-safe")
-
-        if self.batch.isChecked():
-            inputs.append("--batch")
-
-        if self.internet.isChecked():
-            inputs.append("--check-internet ")
-
-        if self.cleanup.isChecked():
-            inputs.append("--cleanup")
-
-        if self.eta.isChecked():
-            inputs.append("--eta")  
-
-        if self.flushSession.isChecked():
-            inputs.append("--flush-session")
-
-        if self.forms.isChecked():
-            inputs.append("--forms")      
-
-        verbose_t_value = self.verbose_t.currentText()
-        if verbose_t_value and verbose_t_value!="VERBOSE":
-            inputs.append(f"-v {self.verbose_t.currentText()}")
-
-        answers_value = self.answers.text().strip()
-        if answers_value:
-            inputs.append(f"--answers={answers_value}")
-
-        base64_param_value = self.base64_param.text().strip()
-        if base64_param_value:
-            inputs.append(f"--base64={base64_param_value}")
-
-        #print(f'{inputs}') # Debugging point --> will remove later 
-        # Context ---> AI Summary --> History --> ML Prediction --> Neurosymbolic
-        return inputs
-
-    def clearInputs(self):
-
-        self.print_help.setChecked(False)
-        self.print_help2.setChecked(False)
-        self.advance_help.setChecked(False)
-        self.print_version.setChecked(False)
-        self.base64.setChecked(False)
-        self.batch.setChecked(False)
-        self.internet.setChecked(False)
-        self.cleanup.setChecked(False)
-        self.eta.setChecked(False)
-        self.flushSession.setChecked(False)
-        self.forms.setChecked(False)
-        self.verbose_t.setCurrentIndex(0)
-        self.answers.clear()
-        self.base64_param.clear()
+        misc = self.add_group("Miscellaneous", columns=2)
+        self.value(misc, "Predefined answers (--answers)", "--answers",
+                   'e.g. "quit=N,follow=N"')
+        self.value(misc, "Base64 parameter(s) (--base64)", "--base64",
+                   "comma separated parameters to base64-encode")
+        self.value(misc, "Alert command on finding (--alert)", "--alert",
+                   'e.g. "notify-send found"')
