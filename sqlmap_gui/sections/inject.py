@@ -1,105 +1,45 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout,QHBoxLayout,QPushButton, QLabel, QComboBox, QCheckBox, QLineEdit
-from PyQt5.QtCore import Qt
+from sqlmap_gui.sections.widgets import OptionTab
 
-class InjectTab(QWidget):
+
+class InjectTab(OptionTab):
     def __init__(self):
         super().__init__()
-        self.initUI()
+        self._build()
 
-    def initUI(self):
+    def _build(self):
+        params = self.add_group("Testable parameters", columns=1)
+        self.value(params, "Only test these parameters (-p)", "-p",
+                   "e.g. id,username (comma separated)")
+        self.value(params, "Skip these parameters (--skip)", "--skip",
+                   "e.g. token,csrf")
+        self.choice(params, "Filter by GET/POST (--param-filter)",
+                    "--param-filter", ["GET", "POST"])
+        self.value(params, "Exclude by regex (--param-exclude)", "--param-exclude")
 
-        self.layout = QVBoxLayout()
+        static = self.add_group("Skip boring values", columns=1)
+        self.flag(static, "Skip parameters with no dynamic content "
+                          "(--skip-static)", "--skip-static")
+        self.flag(static, "Use big random numbers instead of 1 (--invalid-bignum)",
+                  "--invalid-bignum")
+        self.flag(static, "Use logical A>B instead of 1 (--invalid-logical)",
+                  "--invalid-logical")
+        self.flag(static, "Use random strings instead of 1 (--invalid-string)",
+                  "--invalid-string")
 
-        self.upper_layout = QHBoxLayout()
+        custom = self.add_group("Payload boundaries", columns=1)
+        self.value(custom, "Payload prefix (--prefix)", "--prefix", "')AND")
+        self.value(custom, "Payload suffix (--suffix)", "--suffix", "AND ('a'='a")
 
-        self.param_filter = QComboBox()
-        self.param_filter.addItem("Select")
-        self.param_filter.addItems(["GET", "POST"])
-        self.upper_layout.addWidget(QLabel("--param-filter"))
-        self.upper_layout.addWidget(self.param_filter)
+        tamper = self.add_group("Tamper scripts", columns=1)
+        self.value(tamper, "Tamper script(s) (--tamper)", "--tamper",
+                   "e.g. between,randomcase (comma separated)")
+        self.value(tamper, "Character encoding (--charset)", "--charset",
+                   "e.g. 0123456789abcdef")
 
-        self.prefix = QLineEdit(self)
-        self.prefix.setPlaceholderText("payload prefix")
-        self.upper_layout.addWidget(QLabel("--prefix"))
-        self.upper_layout.addWidget(self.prefix)
-
-        self.suffix = QLineEdit(self)
-        self.suffix.setPlaceholderText("payload suffix")
-        self.upper_layout.addWidget(QLabel("--suffix"))
-        self.upper_layout.addWidget(self.suffix)
-
-        self.layout.addLayout(self.upper_layout)
-
-        self.general_attack = QCheckBox("General filter")
-        self.layout.addWidget(self.general_attack)
-
-        self.skip_static = QCheckBox("--skip-static")
-        self.layout.addWidget(self.skip_static)
-
-        self.invalid_bignum = QCheckBox("--invalid-bignum")
-        self.layout.addWidget(self.invalid_bignum)
-
-        self.invalid_logical = QCheckBox("--invalid-logical")
-        self.layout.addWidget(self.invalid_logical)
-
-        self.invalid_string = QCheckBox("--invalid-string")
-        self.layout.addWidget(self.invalid_string)
-
-        self.no_cast = QCheckBox("--no-cast")
-        self.layout.addWidget(self.no_cast)
-
-        self.no_escape = QCheckBox("--no-escape")
-        self.layout.addWidget(self.no_escape)
-
-        # Add more here 
-        self.setLayout(self.layout)
-
-    def collectInputs(self):
-        
-        inputs = []
-
-        param_filter_value = self.param_filter.currentText()
-        if param_filter_value and param_filter_value!="Select":
-            inputs.append(f"--param-filter {param_filter_value}")
-
-        if self.general_attack.isChecked():
-            inputs.append("--time-sec 10 --random-agent")
-
-        if self.skip_static.isChecked():
-            inputs.append("--skip-static")
-
-        if self.invalid_bignum.isChecked():
-            inputs.append("--invalid-bignum")
-
-        if self.invalid_logical.isChecked():
-            inputs.append("--invalid-logical")
-
-        if self.invalid_string.isChecked():
-            inputs.append("--invalid-string")
-
-        if self.no_cast.isChecked():
-            inputs.append("--no-cast")
-
-        if self.no_escape.isChecked():
-            inputs.append("--no-escape")
-
-        prefix_value = self.prefix.text()
-        if prefix_value:
-            inputs.append(f"--prefix={prefix_value}")
-
-        suffix_value = self.suffix.text()
-        if suffix_value:
-            inputs.append(f"--suffix={suffix_value}")
-        return inputs
-
-    def clearInputs(self):
-        self.param_filter.setCurrentIndex(0)
-        self.general_attack.setChecked(False)
-        self.skip_static.setChecked(False)
-        self.invalid_bignum.setChecked(False)
-        self.invalid_logical.setChecked(False)
-        self.invalid_string.setChecked(False)
-        self.no_cast.setChecked(False)
-        self.no_escape.setChecked(False)
-        self.prefix.clear()
-        self.suffix.clear()
+        heur = self.add_group("Heuristics", columns=1)
+        self.flag(heur, "Conduct thorough tests only on promising parameters "
+                        "(--smart)", "--smart")
+        self.value(heur, "Show only tests matching regex (--test-filter)",
+                   "--test-filter", "e.g. row")
+        self.value(heur, "Skip tests matching regex (--test-skip)",
+                   "--test-skip", "e.g. BENCHMARK")
