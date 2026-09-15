@@ -11,7 +11,6 @@ Pygments==2.18.0
 PyQt5==5.15.11
 PyQt5-Qt5==5.15.2
 PyQt5_sip==12.15.0
-pywin32==308
 soupsieve==2.6
 urllib3==2.3.0
 webencodings==0.5.1
