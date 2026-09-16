@@ -207,7 +207,7 @@ _PACKAGE_SPECS = (
     {
         "dist": "pywinpty",
         "import_name": "winpty",
-        "required": False,
+        "required": True,
         "platforms": ("Windows",),
         "purpose": "Enables a fully interactive embedded terminal on Windows.",
     },
