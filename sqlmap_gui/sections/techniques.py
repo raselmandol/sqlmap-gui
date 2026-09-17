@@ -1,100 +1,37 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox, QLineEdit, QCheckBox, QHBoxLayout
+from sqlmap_gui.sections.widgets import OptionTab
 
-class TechniquesTab(QWidget):
+
+class TechniquesTab(OptionTab):
     def __init__(self):
         super().__init__()
-        self.initUI()
+        self._build()
 
-    def initUI(self):
-        self.layout = QVBoxLayout()
+    def _build(self):
+        core = self.add_group("Technique selection", columns=2)
+        self.value(core, "Techniques to try (--technique)", "--technique",
+                   "B=Boolean E=Error U=Union S=Stacked T=Time Q=Inline",
+                   tooltip="e.g. BEUSTQ (default) or just T for time-based")
+        self.number(core, "Seconds of DBMS delay (--time-sec)", "--time-sec",
+                    low=1, high=3600, start=None,
+                    tooltip="Default 10; raise it on slow connections")
 
+        union = self.add_group("UNION attack tuning", columns=2)
+        self.value(union, "Column range (--union-cols)", "--union-cols",
+                   "e.g. 1-10 or 12-16")
+        self.value(union, "Character to brute-force columns (--union-char)",
+                   "--union-char", "e.g. A")
+        self.value(union, "FROM table for payload (--union-from)", "--union-from",
+                   "e.g. dual")
 
-        # Row 1 (Horizontal --> QHBoxLayout)
-        row1 = QHBoxLayout()
-        self.technique = QLineEdit()
-        self.technique.setPlaceholderText("e.g., BEUSTQ")
-        row1.addWidget(QLabel("--technique"))
-        row1.addWidget(self.technique)
+        advanced = self.add_group("Advanced / second-order", columns=2)
+        self.value(advanced, "DNS exfiltration domain (--dns-domain)",
+                   "--dns-domain")
+        self.value(advanced, "Second-order result URL (--second-url)",
+                   "--second-url")
+        self.path(advanced, "Second-order request file (--second-req)",
+                  "--second-req")
 
-        self.time_sec = QLineEdit()
-        self.time_sec.setPlaceholderText("Delay in seconds")
-        row1.addWidget(QLabel("--time-sec"))
-        row1.addWidget(self.time_sec)
-        self.layout.addLayout(row1)
-
-        # Row 2 & 3 --> --union-cols & --union-char
-        self.union_cols = QLineEdit(self)
-        self.union_cols.setPlaceholderText("Range of columns to test (e.g., 1-10)")
-        self.layout.addWidget(QLabel("--union-cols"))
-        self.layout.addWidget(self.union_cols)
-
-        self.union_char = QLineEdit(self)
-        self.union_char.setPlaceholderText("Character for bruteforcing columns")
-        self.layout.addWidget(QLabel("--union-char"))
-        self.layout.addWidget(self.union_char)
-
-        self.secondUrl = QLineEdit(self)
-        self.secondUrl.setPlaceholderText("Resulting page URL searched for second-order response")
-        self.layout.addWidget(QLabel("--second-url"))
-        self.layout.addWidget(self.secondUrl)
-
-        self.dnsDomain = QLineEdit(self)
-        self.dnsDomain.setPlaceholderText("Domain name used for DNS exfiltration attack")
-        self.layout.addWidget(QLabel("--dns-domain"))
-        self.layout.addWidget(self.dnsDomain)
-
-        self.secondReq = QLineEdit(self)
-        self.secondReq.setPlaceholderText("--second-req")
-        self.layout.addWidget(QLabel("--second-req"))
-        self.layout.addWidget(self.secondReq)
-
-        self.no_cast = QCheckBox("--no-cast")
-        self.layout.addWidget(self.no_cast)
-
-        self.setLayout(self.layout)
-
-    def collectInputs(self):
-        inputs = []
-
-        technique_value = self.technique.text()
-        if technique_value:
-            inputs.append(f"--technique={self.technique.text()}")
-
-        time_sec_value = self.time_sec.text()
-        if time_sec_value:
-            inputs.append(f"--time-sec {time_sec_value}")
-
-        union_cols_value = self.union_cols.text()
-        if union_cols_value:
-            inputs.append(f"--union-cols={union_cols_value}")
-
-        union_char_value = self.union_char.text()
-        if union_char_value:
-            inputs.append(f"--union-char {union_char_value}")
-
-        dnsDomain_value = self.dnsDomain.text()
-        if dnsDomain_value:
-            inputs.append(f"--dns-domain={dnsDomain_value}")
-
-        secondUrl_value = self.secondUrl.text()
-        if secondUrl_value:
-            inputs.append(f"--second-url={secondUrl_value}")
-
-        secondReq_value = self.secondReq.text()
-        if secondReq_value:
-            inputs.append(f"--second-req={secondReq_value}")
-
-        if self.no_cast.isChecked():
-            inputs.append("--no-cast")
-
-        return inputs
-
-    def clearInputs(self):
-        self.technique.clear()
-        self.time_sec.clear()
-        self.union_cols.clear()
-        self.union_char.clear()
-        self.dnsDomain.clear()
-        self.secondUrl.clear()
-        self.secondReq.clear()
-        self.no_cast.setChecked(False)
+        misc = self.add_group("Payload post-processing", columns=2)
+        self.flag(misc, "Disable payload casting (--no-cast)", "--no-cast")
+        self.flag(misc, "Disable string escaping (--no-escape)", "--no-escape")
+        self.flag(misc, "Retrieve data as hex (--hex)", "--hex")
