@@ -485,8 +485,9 @@ class ConfigurationTab(QWidget):
 
         if environment.os_name() == "Windows":
             body.addWidget(self._muted(
-                "Tip: install pywinpty (see Packages) for a fully interactive "
-                "terminal on Windows.", small=True))
+                "The embedded terminal runs fully interactive through pywinpty, "
+                "installed alongside sqlmap-gui. If it ever reports missing, "
+                "repair it from the Packages section.", small=True))
         return box
 
     def _section_terminal(self) -> QWidget:
