@@ -154,7 +154,7 @@ class ConfigurationTab(QWidget):
         """
         self._terminal_host = window
 
-    # ---------------------------------------------------------- UI helpers
+    # UI Helpers
 
     @staticmethod
     def _muted(text: str, small: bool = False) -> QLabel:
@@ -240,7 +240,7 @@ class ConfigurationTab(QWidget):
         outer.addLayout(body)
         return box, body
 
-    # ---------------------------------------------------------------- build
+    # Build
 
     def _build(self):
         root = QVBoxLayout(self)
@@ -301,7 +301,7 @@ class ConfigurationTab(QWidget):
         scroll.setWidget(holder)
         root.addWidget(scroll)
 
-        # wiring ---------------------------------------------------------
+        # Wiring
         self.sqlmap_edit.editingFinished.connect(self.on_sqlmap_edited)
         self.python_combo.currentTextChanged.connect(
             lambda *_: self.update_python_status())
@@ -567,7 +567,7 @@ class ConfigurationTab(QWidget):
         body.addLayout(links)
         return box
 
-    # ------------------------------------------------------------- actions
+    # Actions 
 
     def current_python(self) -> str:
         return str(self.python_combo.currentData() or "")
@@ -710,7 +710,6 @@ class ConfigurationTab(QWidget):
                 "Could not run sqlmap - check the Python path.")
             self.sqlmap_version_status.setStyleSheet(BAD_STYLE)
 
-    # -------------------------------------------------------------- python
 
     def detect_pythons(self, first_run=False):
         combo = self.python_combo
@@ -798,7 +797,6 @@ class ConfigurationTab(QWidget):
                 QMessageBox.information(self, "Install Python",
                                         f"Run this command:\n{suggestion}")
 
-    # ------------------------------------------------------------ packages
 
     def refresh_packages(self):
         """Re-scan the running interpreter and rebuild the package list."""
@@ -897,7 +895,6 @@ class ConfigurationTab(QWidget):
                 if child is not None:
                     ConfigurationTab._clear_layout(child)
 
-    # --------------------------------------------------------------- shell
 
     def on_shell_change(self, name: str):
         app_settings.put(app_settings.KEY_SHELL, name)
