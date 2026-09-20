@@ -1,13 +1,13 @@
 # sqlmap-gui
 
-![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/sqlmap_gui/resources/icon.png)
+![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/v200_1_preview1.png)
 
 
 `sqlmap-gui` is a Python-based graphical user interface (GUI) for interacting with the powerful [sqlmap](https://github.com/sqlmapproject/sqlmap) penetration testing tool. This GUI simplifies the use of sqlmap, enabling users to execute SQL injection tests and analyze vulnerabilities without requiring extensive command-line experience.
 
 ---
 
-[![PyPI version](https://img.shields.io/pypi/v/sqlmap-gui)](https://pypi.org/project/sqlmap-gui/) [![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](#) [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](#) [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](#) [![CI/CD](https://github.com/raselmandol/sqlmap-gui/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/raselmandol/sqlmap-gui/actions/workflows/ci-cd.yml)
+[![PyPI version](https://img.shields.io/pypi/v/sqlmap-gui)](https://pypi.org/project/sqlmap-gui/) [![GitHub release](https://img.shields.io/github/v/release/raselmandol/sqlmap-gui)](https://github.com/raselmandol/sqlmap-gui/releases) [![GitHub release date](https://img.shields.io/github/release-date/raselmandol/sqlmap-gui)](https://github.com/raselmandol/sqlmap-gui/releases) [![GitHub last commit](https://img.shields.io/github/last-commit/raselmandol/sqlmap-gui)](https://github.com/raselmandol/sqlmap-gui/commits/main) [![CI/CD](https://github.com/raselmandol/sqlmap-gui/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/raselmandol/sqlmap-gui/actions/workflows/ci-cd.yml)
 
 
 ## Features
@@ -22,105 +22,48 @@
 
 ## Screenshots
 
-![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/1_1.png)
+![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/v200_1_preview2.png)
 
-![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/1_3.png)
+![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/v200_1_preview4.png)
+
+![GUI Preview](https://raw.githubusercontent.com/raselmandol/sqlmap-gui/refs/heads/main/screenshots/v200_1_preview3.png)
 
 ---
 
 ## Installation
 
-### Recommended (PyPI)
-
 ```bash
 pip install sqlmap-gui
 ```
 
-### From Source
-
-Follow these steps to set up the project locally:
-
-### Clone the Repository
+That single command pulls in everything the GUI needs, including the
+`pywinpty` terminal backend on Windows. Run it with:
 
 ```bash
-git clone https://github.com/raselmandol/sqlmap-gui.git
-cd sqlmap-gui
+sqlmap-gui
 ```
 
-### Create a Virtual Environment
+`pip install` puts a `sqlmap-gui` launcher on your `PATH`, so this works from
+any directory. If you installed into a virtual environment, activate it first --
+the launcher lives in that environment's `Scripts`/`bin` folder, not on the
+system `PATH`.
 
-```bash
-python -m venv sqlmap_env
-sqlmap_env\Scripts\activate    # Windows
-```
+To launch with a console attached (handy for seeing tracebacks), run
+`python -m sqlmap_gui` instead.
 
-### Install Dependencies
+> [!Tip]
+> sqlmap itself is not bundled. On first use, point the GUI at an existing
+> sqlmap checkout or let it download the latest sqlmap for you from the
+> Environment settings.
 
-```bash
-pip install -r requirements.txt
-```
-
-###  Build
-
-```bash
-pip install -e .
-```
-### Run the Application
-
-```bash
-python sqlmap_gui
-```
----
-
-##  Build Executable (Windows)
-
-if you want to build an `.exe`:
-
-### Install PyInstaller:
-   ```bash
-   pip install pyinstaller
-   ```
-
-> [!Note]
-> **Note:** Already added in `requirements.txt`. (If you want to ignore it, make sure to remove it from `requirements.txt`.)
-
-
-Convert your PNG icon to ICO.
-
-### Run:
-   ```bash
-   pyinstaller --name sqlmap-gui --onefile --windowed --icon=icon.ico sqlmap_gui/main.py
-   ```
-
----
-
-## Builder Script (`builder.bat`)
-###  Usage
-Run the script with one of the following flags:
-
-```bash
-builder.bat --build
-```
-Builds the project using `pip install -e .`
-
-```bash
-builder.bat --run
-```
-Runs the main application using `python sqlmap_gui`.
-
-```bash
-builder.bat --exe
-```
-Builds a standalone executable using **PyInstaller**. Configuration parameters are loaded from `config.txt`.
-
-> [!Note]
-> To use `--activate`, run `./builder.ps1 --activate` instead of `./builder.bat --activate`. The PowerShell script (`builder.ps1`) is more reliable and effective in PowerShell environments, which are commonly used as the default terminal in most IDEs (such as Visual Studio Code).
+Setting up a development environment, building a standalone `.exe`, or using
+the builder scripts is covered in [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ---
 
 ## How to Use
 
- 1. Launch the GUI (`python sqlmap_gui`).
+ 1. Launch the GUI (`sqlmap-gui`).
  2. Navigate through the tabs to explore sqlmap commands:
    - **Injection Tests**: Enter a target URL and customize sqlmap options.
    - **Advanced Options**: Configure sqlmap payloads and settings.
@@ -161,7 +104,7 @@ To get an overview of sqlmap capabilities, a list of supported features, and a d
 ## Requirements
 
 - Python 3.8+
-- PyQt5
+- PyQt5 (installed automatically by pip)
 - [sqlmap](https://github.com/sqlmapproject/sqlmap) source
 
 ---
@@ -180,7 +123,7 @@ Contributions are welcome! To contribute:
 3. Commit your changes:
 
    ```bash
-   git commit -m "Add new feature"
+   git commit -m "Add feature"
    ```
 
 4. Push to your branch:
@@ -196,24 +139,3 @@ Contributions are welcome! To contribute:
 ## License
 
 This project is licensed under the MIT License, [sqlmap license](https://raw.githubusercontent.com/sqlmapproject/sqlmap/refs/heads/master/LICENSE).
----
-
-## To-Do
-
-
-- [ ]  Enhance error handling.
-- [ ]  AI Assistant Panel
-- [ ]  Option Recommender (Auto-Suggest Best SQLMap Flags)
-- [ ]  Auto Tamper Script Selector (Based on Response Patterns)
-- [ ]  Vulnerability Summary Generator
-- [x]  Builder.bat script
-- [ ]  Option to load Sqlmap source/folder selection
-- [ ]  Improve documentation with more examples.
-- [ ]  More tabs/ more options
-- [ ]  JSON import, export
-- [ ]  History Tab
-- [ ]  Optimization tab
-- [ ]  Burp proxy
-- [ ]  sqlmap web
-- [ ]  Clean terminal/editor  
-- [ ]  GitHub pages with documentation
