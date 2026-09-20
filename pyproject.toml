@@ -4,10 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sqlmap-gui"
-version = "1.1.0"
+version = "2.0.0"
 description = "PyQt5 desktop GUI for running sqlmap with a friendly interface."
 readme = "README.md"
 requires-python = ">=3.8"
+license = { file = "LICENSE" }
 authors = [
     { name = "Md. Rasel Mandol" }
 ]
@@ -25,15 +26,25 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Security",
     "Topic :: Software Development :: User Interfaces"
 ]
 dependencies = [
-    "PyQt5>=5.15"
+    "PyQt5>=5.15",
+    # Hard dependency on Windows: without it the embedded terminal falls back
+    # to a non-interactive mode. Wheels exist for every supported CPython.
+    "pywinpty>=2.0; platform_system == 'Windows'",
 ]
 
-[project.scripts]
-sqlmap-gui = "sqlmap_gui.main:main"
+[project.urls]
+Homepage = "https://github.com/raselmandol/sqlmap-gui"
+Source = "https://github.com/raselmandol/sqlmap-gui"
+Issues = "https://github.com/raselmandol/sqlmap-gui/issues"
+
+
+[project.gui-scripts]
+sqlmap-gui = "sqlmap_gui.launcher:main"
 
 [tool.setuptools]
 include-package-data = true
@@ -42,4 +53,4 @@ include-package-data = true
 include = ["sqlmap_gui", "sqlmap_gui.*"]
 
 [tool.setuptools.package-data]
-sqlmap_gui = ["resources/icon.png"]
+sqlmap_gui = ["resources/*.png", "resources/*.svg"]
